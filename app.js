@@ -4,11 +4,21 @@ var express = require('express'),
     session = require('express-session'),
     User = require('./models/Users.js');
 
+var port = process.env.OPENSHIFT_NODEJS_PORT || 9000,
+    server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+
 app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({ secret: 'trollme' }));
+app.use(function (req, res, next) {
+    console.log('Solicitando!!');
+    console.log(req.params);
+    console.log('URL!!');
+    console.log(req.url);
+    next();
+});
 
 /// ROUTES
 app.get('/', function(request, response){
@@ -41,5 +51,5 @@ app.all('*', function(request, response){
 });
 
 app.listen(port, server_ip_address, function(){
-    console.log('Listening on %s:%d and MongoDB: %s', server_ip_address, port, mongodb_connection_string);
+    console.log('Listening on %s:%d', server_ip_address);
 });

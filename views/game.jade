@@ -1,19 +1,18 @@
 extends ./main.jade
 
 block html
-    <!--[if lt IE 7]>      <html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-    <!--[if IE 7]>         <html class="lt-ie9 lt-ie8"> <![endif]-->
-    <!--[if IE 8]>         <html class="lt-ie9"> <![endif]-->
-    <!--[if gt IE 8]><!--> <html> <!--<![endif]-->
-    <!-- Created with JADE-->
+    //[if lt IE 7]><![endif]
+    // Created with JADE
 block title
     title Trolling Mode: ON!
 
 block content
     main
         h1 Trolling Mode: ON!
-        div#game
+        div.game
+            p Chat
 
 block extrajs
-    link(href='scripts/vendor/_phaser.min.js', type='text/javascript')
-    link(href='scripts/game.js', type='text/javascript')
+    script(href='vendor/_phaser.min.js', type='text/javascript')
+    script(src='js/main.js', type='text/javascript')
+    //- script(src='js/game.js', type='text/javascript')
