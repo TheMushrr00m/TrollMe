@@ -1,0 +1,9 @@
+# Ignoring this files and folders
+.idea
+.directory
+.git/
+.idea/
+bower_*/
+node_modules/
+Relleno/
+database/

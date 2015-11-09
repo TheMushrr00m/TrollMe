@@ -1,0 +1,55 @@
+*, html {
+    margin: 0;
+    paddin: 0;
+}
+article {
+    padding: 100px;
+}
+h2 {
+    color: #fff;
+    font-family: helvetica;
+    text-align: center;
+}
+#home {
+    background: url('../assets/flags/mexico.jpg') 50% 0 no-repeat fixed;
+}
+#section2 {
+    background: url('../assets/flags/argentina.jpg') 50% 0 no-repeat fixed;
+}
+#section3 {
+    background: url('../assets/flags/brazil.jpg') 50% 0 no-repeat fixed;
+}
+#section4 {
+    background: url('../assets/flags/colombia.jpg') 50% 0 no-repeat fixed;
+}
+#section5 {
+    background: url('../assets/flags/ecuador.png') 50% 0 no-repeat fixed;
+}
+#section6 {
+    background: url('../assets/flags/panama.jpg') 50% 0 no-repeat fixed;
+}
+#section7 {
+    background: url('../assets/flags/venezuela.jpg') 50% 0 no-repeat fixed;
+}
+#home, #section2, #section3, #section4, #section5, #section6, #section7 {
+    background-size: cover;
+    margin 0 auto;
+    max-width: 1920px;
+    min-height: 700px;
+    position: relative;
+    width: 100%;
+}
+#section2, #section3, #section4, #section5, #section6, #section7 {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    -o-box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+.geek {
+    background: url('public/assets/ardilla.jpeg');
+    background-size: cover;
+    display: block;
+    height: 368px;
+    margin: 0 auto;
+    width: 517px;
+}

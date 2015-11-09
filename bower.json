@@ -1,0 +1,25 @@
+{
+  "name": "TrollMe",
+  "description": "Trollme App",
+  "version": "0.0.1",
+  "main": [
+    "app.js"
+  ],
+  "dependencies": {
+    "phaser": "~2.4.4",
+    "easystarjs": "~0.2.3",
+    "phaser_plugin_pathfinding": "git@github.com:appsbu-de/phaser_plugin_pathfinding.git#~0.2.0",
+    "polymer": "Polymer/polymer#^1.2.0"
+  },
+  "authors": [
+    "TheMushrr00m",
+    "Gamex Studios"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "Relleno"
+  ],
+  "private": true
+}
