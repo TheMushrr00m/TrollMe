@@ -5,46 +5,8 @@ html(lang='en')
         title Welcome to TrollMe
         meta(name='author', content='Gamex Studios')
         meta(name="application-name", content="Troll Me!")
-        link(rel='stylesheet', type='text/css', href='stylesheets/main.css')
+        link(rel='stylesheet', type='text/css', href='../assets/stylesheets/main.css')
     body
-        section#home(data-type='parallax_section', data-speed='10')
-            article
-                div.geek
-                    h2 Pagina: 1
-        section#section2(data-type='parallax_section', data-speed='10')
-            article
-                div.geek
-                    h2 Pagina: 2
-        section#section3(data-type='parallax_section', data-speed='10')
-            article
-                div.geek
-                    h2 Pagina: 3
-        section#section4(data-type='parallax_section', data-speed='10')
-            article
-                div.geek
-                    h2 Pagina: 4
-        section#section5(data-type='parallax_section', data-speed='10')
-            article
-                div.geek
-                    h2 Pagina: 5
-        section#section6(data-type='parallax_section', data-speed='10')
-            article
-                div.geek
-                    h2 Pagina: 6
-        section#section7(data-type='parallax_section', data-speed='10')
-            article
-                div.geek
-                    h2 Pagina: 7
-        script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js', type='text/javascript')
-        script
-            include ../public/scripts/main.js
-    //-     main
-    //-         h1.title TrollMe
-    //-         h3.subtitle Un sitio donde puedes sacar ese "Troll" que llevas dentro.
-    //-         div.buttons
-    //-             a(href='/register'): button.buttons='Sign up '
-    //-                 img.button-img(src='/assets/download.svg', alt='Sign up')
-    //-             a(href='/login'): button.button-blank='Sign In '
-    //-                  img.button-blank(src='/assets/login.svg', alt='Sign in')
-    //- block footer
-    //-     include ./footer.jade
+        h1 Welcome
+    block footer
+        include ./footer.jade
