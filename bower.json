@@ -9,7 +9,8 @@
     "phaser": "~2.4.4",
     "easystarjs": "~0.2.3",
     "phaser_plugin_pathfinding": "git@github.com:appsbu-de/phaser_plugin_pathfinding.git#~0.2.0",
-    "polymer": "Polymer/polymer#^1.2.0"
+    "polymer": "Polymer/polymer#^1.2.0",
+    "Materialize": "materialize#~0.97.2"
   },
   "authors": [
     "TheMushrr00m",

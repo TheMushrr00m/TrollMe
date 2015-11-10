@@ -1,8 +1,1 @@
-body {
-	background-color: 'black';
-}
-.game {
-	width: 400px;
-	height: 120px;
-	background-color: red;
-}
+.game{width:400px;height:120px;background-color:red}

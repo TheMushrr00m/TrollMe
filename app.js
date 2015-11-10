@@ -12,13 +12,9 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({ secret: 'trollme' }));
-app.use(function (req, res, next) {
-    console.log('Solicitando!!');
-    console.log(req.params);
-    console.log('URL!!');
-    console.log(req.url);
+/*app.use(function (req, res, next) {
     next();
-});
+});*/
 
 /// ROUTES
 app.get('/', function(request, response){
@@ -31,8 +27,12 @@ app.get('/trollme', function(request, response){
 });
 
 app.get('/login', function(request, response){
+    /*var obj = {};
+    console.log('Solicitando!!');
+    console.log('body: ' + JSON.stringify(request.body));*/
     response.render('login');
 });
+
 app.get('/home/:username', function(request, response){
     console.log(request.params.username)
     var user = userData.filter(function(user){

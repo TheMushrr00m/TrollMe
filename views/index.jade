@@ -1,12 +1,5 @@
-doctype html
-html(lang='en')
-    head
-        meta(charset='UTF-8')
-        title Welcome to TrollMe
-        meta(name='author', content='Gamex Studios')
-        meta(name="application-name", content="Troll Me!")
-        link(rel='stylesheet', type='text/css', href='css/main.css')
-    body
-        h1 Welcome
-    block footer
-        include ./footer.jade
+extends ./main.jade
+
+block content
+    h1 Bienvenido
+    button#login Press Me
