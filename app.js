@@ -27,9 +27,6 @@ app.get('/trollme', function(request, response){
 });
 
 app.get('/login', function(request, response){
-    /*var obj = {};
-    console.log('Solicitando!!');
-    console.log('body: ' + JSON.stringify(request.body));*/
     response.render('login');
 });
 
@@ -51,5 +48,5 @@ app.all('*', function(request, response){
 });
 
 app.listen(port, server_ip_address, function(){
-    console.log('Listening on %s:%d', server_ip_address);
+    console.log('Listening on %s:%d', server_ip_address, port);
 });

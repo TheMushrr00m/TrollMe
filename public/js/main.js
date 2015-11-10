@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  alert('Hi');
+
+  /*alert 'Hi' */
   return $('#login').click(function() {
     var data;
     data = {
@@ -8,6 +9,7 @@ $(document).ready(function() {
     return $.ajax({
       url: '/login',
       dataType: 'html',
+      type: 'GET',
       data: JSON.stringify(data),
       error: function(jqXHR, textStatus, errorThrown) {
         return $('body').append("AJAX Error: " + textStatus);
