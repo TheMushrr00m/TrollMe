@@ -1,9 +1,11 @@
 extends ./main.jade
 
 block title
-    title='Welcome ' + username
+	title='Welcome ' + username
 
 block content
-    h1: a(href='/') Index
-
-    h2='Welcome ' + username
+	div
+		h2='Bienvenido :Username' 
+		div.chip
+			img(src='images/themushrr00m.jpeg', alt='username_pic') 
+			'Username'

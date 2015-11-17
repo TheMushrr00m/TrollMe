@@ -1,1 +1,14 @@
 extends ./main.jade
+
+block title
+	title Create an Account!
+
+block content
+	h1= 'Register!'    
+	div.container
+		a(href='/login')
+			button#login To Login!
+		button#registro Register!
+	div#test
+block extrajs
+	script(src='js/main.js')

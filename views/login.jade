@@ -1,11 +1,23 @@
 extends ./main.jade
-
 block title
-    title Sign in with your Account!
+	title Inicia Sesión en TrollMe
 
 block content
-    h1= 'Login!'
-    button#login Press Me
-    div#test
+	h1 Estas a punto de ingresar!
+	//- Lanza el Modal de Login!
+	//- a.modal-trigger.waves-effect.waves-light.btn(href='#modal-login') Iniciar Sesión
+	button.btn.modal-trigger(data-target='modal-login') Iniciar Sesión
+	div#modal-login.modal
+		div.modal-content
+			form(method='POST', action='/login')
+				h4 Inicia Sesión en TrollMe
+				label(for='name') Nombre de Usuario:
+					input#name(name='name', type='text', placeholder='Ingresa tu nombre de usuario en TrollMe', tab-index='1', required)
+				label(for='pass') Contraseña:
+					input#pass(name='pass', type='password', placeholder='Ingresa tu contraseña', required)
+		div.modal-footer
+			a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='/login') Loguearse
+			a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='/login') Cancelar
+
 block extrajs
-    script(src='js/main.js')
+	script(src='js/main.js')
