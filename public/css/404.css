@@ -1,21 +1,9 @@
-body{
+body {
     background-color: #61B9CC;
-    font-family: Helvetica;
-    background-size: cover;
-    color: white;
-    font-weight: bold;
-    width: 100%;
-    height: 100%;
-    margin: 0;
 }
-#content{
-    margin-top: 10%;
-    width: 25%;
-    height: 330px;
+#content {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-}
-img{
-    margin-top: 25%;
+    height: 60%
 }
