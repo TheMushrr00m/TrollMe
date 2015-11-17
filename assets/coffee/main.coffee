@@ -1,14 +1,28 @@
+
 $(document).ready ->
-  ###alert 'Hi'###
-  $('#login').click ->
+  ###$('#log-btn').click ->
+    data =
+      name: $('#name').val()
+      pass: $('#pass').val()
+    $.ajax
+    url: "/home/#{data.name}"
+    dataType: 'html'
+    type: 'GET'
+    data: JSON.stringify(data)
+    error: (jqXHR, textStatus, errorThrown) ->
+    success: (data, textStatus, jqXHR) ->###
+
+  ###$('#registro').click ->
     data =
       name: 'TheMushrr00m'
     $.ajax
-      url: '/login'
-      dataType: 'html'
-      type: 'GET'
-      data: JSON.stringify(data)
-      error: (jqXHR, textStatus, errorThrown) ->
-        $('body').append "AJAX Error: #{textStatus}"
-      success: (data, textStatus, jqXHR) ->
-        $('body').append "Successful AJAX call: #{data}"
+    url: '/register'
+    dataType: 'html'
+    type: 'POST'
+    data: JSON.stringify(data)
+    error: (jqXHR, textStatus, errorThrown) ->
+    success: (data, textStatus, jqXHR) ->###
+  
+  $('.modal-trigger').leanModal(
+    dismissible: false
+  )
