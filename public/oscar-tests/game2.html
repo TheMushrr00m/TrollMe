@@ -17,11 +17,11 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
 
 function preload() {
-    game.load.image('star', 'assets/star.png');
-    game.load.spritesheet('hazard', 'assets/baddie.png', 32, 32);
-    game.load.image('sky', 'assets/sky.png');
-    game.load.spritesheet('player', 'assets/dude.png', 32, 48);
-    game.load.image('lives', 'assets/firstaid.png');
+    game.load.image('star', 'assets/sprites/star.png');
+    game.load.spritesheet('hazard', 'assets/sprites/baddie.png', 32, 32);
+    game.load.image('sky', 'assets/backgrounds/sky.png');
+    game.load.spritesheet('player', 'assets/sprites/dude.png', 32, 48);
+    game.load.image('lives', 'assets/sprites/firstaid.png');
 }
 
 var play = true;
