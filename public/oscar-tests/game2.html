@@ -171,7 +171,6 @@ function hazardHitsPlayer (player, hazard) {
         player.kill();
         enemies.callAll('kill');
         stars.callAll('kill');
-        scoreText.visible = false;
         stateText.text=" GAME OVER \nFinal Score: " + score + "\n Click to restart";
         stateText.visible = true;
         play = false;

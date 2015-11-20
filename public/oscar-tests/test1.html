@@ -3,7 +3,7 @@
 <head> 
 	<meta charset="UTF-8" />
     <title>Phaser - Making your first game, part 8</title>
-    <script type="text/javascript" src="js/phaser.min.js"></script>
+    <script type="text/javascript" src="js/phaser-ninja-physics.js"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -36,6 +36,10 @@ var bullets;
 var stars;
 var score = 0;
 var score_text;
+
+var poly;
+
+var graphics;
 
 function create() {
     //  We're going to be using physics, so enable the Arcade Physics system
@@ -117,6 +121,20 @@ function create() {
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
+
+    poly = new Phaser.Polygon();
+
+    //  And then populate it via setTo, using any combination of values as above
+    poly.setTo([ new Phaser.Point(200, 100), new Phaser.Point(350, 100), new Phaser.Point(375, 200), new Phaser.Point(150, 200) ]);
+
+    graphics = game.add.graphics(0, 0);
+
+    graphics.beginFill(0xFF33ff);
+    graphics.drawPolygon(poly.points);
+    graphics.endFill();
+
+    console.log(player.width + ' ' + player.height);
+
 }
 
 function update() {
@@ -125,6 +143,20 @@ function update() {
     game.physics.arcade.collide(player, platforms);
     game.physics.arcade.collide(bullets, platforms, resetBullet);
     game.physics.arcade.collide(stars, platforms);
+
+    //console.log(player.body.x + ' ' + player.body.y);
+
+    graphics.clear();
+
+    if (poly.contains(player.body.x, player.body.y) || poly.contains(player.body.x, player.body.y + player.height) ||
+        poly.contains(player.body.x + player.width, player.body.y) || poly.contains(player.body.x + player.width, player.body.y + player.height))
+    {
+        graphics.beginFill(0xFF3300);
+        player.body.velocity.y = 0;
+    }
+
+    graphics.drawPolygon(poly.points);
+    graphics.endFill();
 
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     game.physics.arcade.overlap(player, stars, collectStar, null, this);
@@ -187,9 +219,11 @@ function update() {
     }
 
     //////////////////////////////////////////      BULLETS     \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    /*
     game.world.forEach(function(bullet) {
         console.log(bullet);
     });
+    */
 }
 
 function fireBullet () {

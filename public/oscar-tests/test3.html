@@ -17,39 +17,47 @@
 var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update });
 
 function preload() {
-	game.stage.backgroundColor = '#149941';
+	game.stage.backgroundColor = '#EFEFEF';
 
     // Load the image and create it into an array of images, 32px width 48 pix height
     game.load.spritesheet('dude', 'assets/sprites/dude2.png', 32, 48);
-    game.load.image('wall', 'assets/sprites/platform.png');
-
+    game.load.image('casa', 'assets/buildings/casa.png');
+    game.load.image('casa2', 'assets/buildings/casa2.png');
+    game.load.image('mall', 'assets/buildings/mall.png');
+    game.load.image('tienda', 'assets/buildings/tienda.png');
+    game.load.image('tienda2', 'assets/buildings/tienda2.png');
+    game.load.image('edificioFrente', 'assets/buildings/edificioFrente.png')
+    game.load.image('edificioLateral', 'assets/buildings/edificioLateral.png')
+    game.load.physics("sprite_physics", "assets/physics/sprite_physics.json")
 }
 
 var player;
 var cursors;
 var t;
+var shop2;
+
+var tile;
 
 function create() {
-    game.physics.startSystem(Phaser.Physics.ARCADE);
+    game.world.setBounds(0, 0, 2724, 1875);
+    game.physics.startSystem(Phaser.Physics.P2JS);
+    game.physics.p2.gravity.y = 0;
 
     // Set The Bounds of the world where the camera can move to
-    game.world.setBounds(-1000, -1000, 2000, 2000);
+    
+    //console.log(game.cache.getImage('house').width);
+    //console.log(game.cache.getImage('house').height);
 
-    player = game.add.sprite(game.world.centerX, game.world.centerY, 'dude');
-    game.physics.arcade.enable(player);
+    player = game.add.sprite(game.world.centerX / 2, game.world.centerY / 2, 'dude');
+    game.physics.p2.enable(player, false);
+    player.body.fixedRotation = true;
+
+    buildings = game.add.group();
+
 
     player.animations.add('left', [0, 1, 2, 3], 10, true);
-    player.animations.add('right', [5, 6, 7, 8], 10, true);
-
-	walls = game.add.group();
-	walls.enableBody = true;
-
-	var wall = walls.create(400, 400, 'wall');
-    wall.body.immovable = true;
-
-    wall = walls.create(-150, 250, 'wall');
-    wall.body.immovable = true;
-
+    player.animations.add('right', [6, 7, 8, 9], 10, true);
+    
 	game.add.text(0, 0, "this text scrolls\nwith the background", { font: "32px Arial", fill: "#f26c4f", align: "center" });
 
 	this.t = game.add.text(0, 0, "this text is fixed to the camera", { font: "32px Arial", fill: "#ffffff", align: "center" });
@@ -59,16 +67,68 @@ function create() {
     this.t.cameraOffset.setTo(200, 500);
 
     cursors = game.input.keyboard.createCursorKeys();
+    
+    house2 = buildings.create(1059 + game.cache.getImage('casa2').width / 2, 322 + game.cache.getImage('casa2').height / 2, 'casa2');
+    enableP2Physics(house2);
+
+    var house2 = buildings.create(827 + game.cache.getImage('casa2').width / 2, 438 + game.cache.getImage('casa2').height / 2, 'casa2');
+    enableP2Physics(house2);
+
+    var house = buildings.create(639 + game.cache.getImage('casa').width / 2, 609 + game.cache.getImage('casa').height / 2, 'casa');
+    enableP2Physics(house);
+    
+    var shop = buildings.create(530 + game.cache.getImage('tienda').width / 2, 708 + game.cache.getImage('tienda').height / 2, 'tienda');
+    enableP2Physics(shop);
+
+    var shop2 = buildings.create(400 + game.cache.getImage('tienda2').width / 2, 826 + game.cache.getImage('tienda2').height / 2, 'tienda2');
+    enableP2Physics(shop2);
+
+    var buildingFront = buildings.create(0 + game.cache.getImage('edificioFrente').width / 2, 570 + game.cache.getImage('edificioFrente').height / 2, 'edificioFrente');
+    enableP2Physics(buildingFront);
+
+    var buildingLateral = buildings.create(1399 + game.cache.getImage('edificioLateral').width / 2, 0 + game.cache.getImage('edificioLateral').height / 2, 'edificioLateral');
+    enableP2Physics(buildingLateral);
+    
+    buildingLateral = buildings.create(1602 + game.cache.getImage('edificioLateral').width / 2, 117 + game.cache.getImage('edificioLateral').height / 2, 'edificioLateral');
+    enableP2Physics(buildingLateral);
+    
+    buildingLateral = buildings.create(1805 + game.cache.getImage('edificioLateral').width / 2, 227 + game.cache.getImage('edificioLateral').height / 2, 'edificioLateral');
+    enableP2Physics(buildingLateral);
+
+    var mall = buildings.create(2007 + game.cache.getImage('mall').width / 2, 572 + game.cache.getImage('mall').height / 2, 'mall');
+    enableP2Physics(mall);
+
+    //540 *458  ,  717 x 610
+    
+    /*
+    
+
+
+    
+
+    
+
+    
+
+    
+*/
+
+    game.camera.follow(player);
+
+    player.body.createBodyCallback(house, fuck, this);
+
+    game.physics.p2.setImpactEvents(true);
 }
 
 function update() {
-	game.physics.arcade.collide(player, walls);
+    var moving = false;
+    player.body.velocity.x = 0;
+    player.body.velocity.y = 0;
 
-    //  only move when you click
     if (game.input.mousePointer.isDown) 	
     {
         //  400 is the speed it will move towards the mouse
-        game.physics.arcade.moveToPointer(player, 200);
+        game.physics.arcade.moveToPointer(player, 400);
         if (Math.abs(player.body.velocity.x) > Math.abs(player.body.velocity.y))
         {
         	if (player.body.velocity.x > 0 )
@@ -97,7 +157,8 @@ function update() {
         //  if it's overlapping the mouse, don't move any more
         if (Phaser.Rectangle.contains(player.body, game.input.x, game.input.y))
         {
-            player.body.velocity.setTo(0, 0);
+            player.body.velocity.x = 0;
+            player.body.velocity.y = 0;
 
             //  Stand still
         	player.animations.stop();
@@ -107,37 +168,61 @@ function update() {
     }
     else
     {
-        player.body.velocity.setTo(0, 0);
+        player.body.velocity.x = 0;
+        player.body.velocity.y = 0;
         //  Stand still
         player.animations.stop();
 
         player.frame = 4;
     }
 
-    /////// Camera Movement ///////////////
+
+    /*    
     if (cursors.up.isDown)
     {
-        game.camera.y -= 4;
-    	this.t.text = 'up';
-
+        player.frame = 5;
+        player.body.moveUp(200);
+        moving = true;
     }
     else if (cursors.down.isDown)
     {
-        game.camera.y += 4;
-    	this.t.text = 'down';
+        player.frame = 4;
+        player.body.moveDown(200);
+        moving = true;
     }
-
     if (cursors.left.isDown)
     {
-        game.camera.x -= 4;
-    	this.t.text = 'left';
+        player.body.moveLeft(200);
+        player.animations.play('left');
+        moving = true;
     }
     else if (cursors.right.isDown)
     {
-        game.camera.x += 4;
-    	this.t.text = 'right';
+        player.animations.play('right');
+        player.body.moveRight(200);
+        moving = true;
     }
+    if(!moving)
+    {
+        player.animations.stop();
+        player.frame = 4;
+    }
+    */
 
+}
+
+function enableP2Physics(object1)
+{
+    game.physics.p2.enable(object1, false);
+    object1.body.offset.setTo();
+    object1.body.static = true;
+    object1.body.fixedRotation = true;
+    object1.body.clearShapes();
+    object1.body.loadPolygon('sprite_physics', object1.key);
+}
+
+function fuck(){
+    console.log('Fucking SHIIIIIIIIIIIIIIIIIT!!!');
 }
 
 </script>
