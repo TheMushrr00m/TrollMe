@@ -1,12 +1,68 @@
 extends ./main.jade
 
+block title
+	title #{title}
+
+block extracss
+
 block content
-	main
-		div#index-banner
-			div.section.no-pad-bot
-				div.container
-					h1.header.center.indigo-text.text-darken-2 Bienvenido a TrollMe!
-					div.row.center
-						h5.header.col.s12.light El lugar donde puedes sacar ese 'Troll' que llevas dentro.
-						div.row.center
-							a#download-button.btn-large.waves-effect.waves-light.indigo.darken-2(href='/login') Entrar!
+	//- MAIN CONTENT
+	.parallax-container
+		.parallax
+			img(src="images/background1.jpg")
+	.section
+		.row.container
+			h2.header Bienvenido a TrollMe
+			p.grey-text.text-darken-3.lighten-3 
+				| TrollMe es una plataforma...
+	.parallax-container.valign-wrapper
+		.section.no-pad-bot
+				.container
+					h3 Necesitas algo más para formar parte?
+					br
+					a.btn.indigo.darken-1.waves(href="#") Comienza la aventura
+			.parallax
+				img(src="images/kids-holding-hands.jpg")
+//- LOGIN MODAL
+//- div#modal-login.modal
+//- 	div.modal-content
+//- 		h3.center-align Login
+//- 		div.center-align
+//- 			div.divider
+//- 			form#frmLogin.col.s12
+//- 				div.row.center-align
+//- 					div.input-field.col.m10.offset-m1.blue-text
+//- 						i.mdi-action-account-circle.prefix
+//- 						input#icon_prefix.validate(type='text')
+//- 						label(for='icon_prefix') Nombre de Usuario:
+//- 					div.input-field.col.m10.offset-m1.blue-text
+//- 						i.mdi-action-lock-open.prefix
+//- 						input#icon-password.validate(type='password')
+//- 						label(for='icon-password') Contraseña
+//- 					div.input-field.col.m10.offset-m1.blue-text
+//- 						input#filled-in-box.blue-text(type='checkbox', checked='checked')
+//- 						label(for='filled-in-box') Recordarme
+//- 			div.divider
+//- 			p
+//- 				a.btn.btn-flat.white.modal-action.modal-close(href='#') Cancelar
+//- 				//- a.waves-effect.waves-blue.blue.btn.btn-flat.modal-action.modal-close#btnLogin(href='#!') Login
+//- 				button.waves-effect.waves-blue.blue.btn.btn-flat.modal-action.modal-close(type='submit') Login
+
+//- 	//- Modal Structure
+//- 	#modal-policy.modal.modal-fixed-footer
+//- 		.modal-content
+//- 			h4 Politica de Privacidad
+//- 			p= "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis explicabo quis repellat placeat voluptatibus rem aut, earum nam asperiores, nulla laudantium, ducimus labore deserunt illo quasi veniam dolor aliquid harum!"
+//- 		.modal-footer
+//- 			a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') Cancelar
+//- 			a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#modal-register') Aceptar
+//- 			p ¿Te vas a echar para atrás con el registro?
+
+//- 	//- Modal Structure
+//- 	#modal-register.modal.modal-fixed-footer
+//- 		.modal-content
+//- 			h4 Registro
+//- 			p= "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis explicabo quis repellat placeat voluptatibus rem aut, earum nam asperiores, nulla laudantium, ducimus labore deserunt illo quasi veniam dolor aliquid harum!"
+//- 		.modal-footer
+//- 			a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') Cancelar
+//- 			a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#') Aceptar
