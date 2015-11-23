@@ -6,8 +6,18 @@ block title
 block extracss
 
 block content
-	div
-		h2='Bienvenido :Username' 
-		div.chip
-			img(src='images/themushrr00m.jpeg', alt='username_pic') 
-			'Username'
+	//- MAIN CONTENT
+	.parallax-container
+		.parallax
+			img(src="images/background1.jpg")
+	.section.indigo.darken-1
+		.row.container
+			ul.breadcrumbs
+			for crumb in breadcrumbs
+				a(href='#{crumb.address}') #{crumb.text} > 
+	.section.white
+		.row.container
+			h2='Bienvenido :Username' 
+			.chip
+				img(src='images/themushrr00m.jpeg', alt='username_pic')
+				| Username

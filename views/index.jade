@@ -10,6 +10,11 @@ block content
 	.parallax-container
 		.parallax
 			img(src="images/background1.jpg")
+	.section.indigo.darken-1
+		.row.container
+			ul#breadcrumbs
+			for crumb in breadcrumbs
+				a(href='#{crumb.address}') #{crumb.text}
 	//- SECTION 2
 	.section
 		.row.container
@@ -23,60 +28,77 @@ block content
 	.parallax-container
 		.section.no-pad-bot
 				.container
-					h2.header.blue-text.text-darken-3 TrollMe es...
-					p.grey-text.text-darken-3
+					h2.header.blue-text.text-lighten-1 TrollMe es...
+					p.white-text.text-darken-3
 						| Un punto donde puedes reunirte con amigos...
 			.parallax
 				img(src="images/lobby.png")
 	//- SECTION 4
+	.section
+		.row.container
+			h2.header.blue-text.text-darken-1 Minijuegos para pasar el rato solo o con tus amigos...
+	//- SECTION 5
+	.parallax-container
+		.parallax
+			img(src="images/game1.png")
+	//- SECTION 6
+	.section
+		.row.container
+			h2.header.blue-text.text-darken-1 Y más cosas...
+	//- SECTION 7
+	.parallax-container
+		.parallax
+			img(src="images/game2.png")
+	//- SECTION 8
 	.parallax-container.valign-wrapper
 		.section.no-pad-bot
 				.container
 					h3 Necesitas algo más para formar parte?
 					br
-					a.btn.indigo.darken-1.waves(href="#") Comienza la aventura
+					a.btn.indigo.darken-1.waves(href="/login") Empieza aquí
 			.parallax
 				img(src="images/kids-holding-hands.jpg")
-//- LOGIN MODAL
-//- div#modal-login.modal
-//- 	div.modal-content
-//- 		h3.center-align Login
-//- 		div.center-align
-//- 			div.divider
-//- 			form#frmLogin.col.s12
-//- 				div.row.center-align
-//- 					div.input-field.col.m10.offset-m1.blue-text
-//- 						i.mdi-action-account-circle.prefix
-//- 						input#icon_prefix.validate(type='text')
-//- 						label(for='icon_prefix') Nombre de Usuario:
-//- 					div.input-field.col.m10.offset-m1.blue-text
-//- 						i.mdi-action-lock-open.prefix
-//- 						input#icon-password.validate(type='password')
-//- 						label(for='icon-password') Contraseña
-//- 					div.input-field.col.m10.offset-m1.blue-text
-//- 						input#filled-in-box.blue-text(type='checkbox', checked='checked')
-//- 						label(for='filled-in-box') Recordarme
-//- 			div.divider
-//- 			p
-//- 				a.btn.btn-flat.white.modal-action.modal-close(href='#') Cancelar
-//- 				//- a.waves-effect.waves-blue.blue.btn.btn-flat.modal-action.modal-close#btnLogin(href='#!') Login
-//- 				button.waves-effect.waves-blue.blue.btn.btn-flat.modal-action.modal-close(type='submit') Login
 
-//- 	//- Modal Structure
-//- 	#modal-policy.modal.modal-fixed-footer
-//- 		.modal-content
-//- 			h4 Politica de Privacidad
-//- 			p= "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis explicabo quis repellat placeat voluptatibus rem aut, earum nam asperiores, nulla laudantium, ducimus labore deserunt illo quasi veniam dolor aliquid harum!"
-//- 		.modal-footer
-//- 			a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') Cancelar
-//- 			a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#modal-register') Aceptar
-//- 			p ¿Te vas a echar para atrás con el registro?
+					
+	//- LOGIN MODAL
+	.modal#modal-login
+		.modal-content
+			h3.center-align Ingresar!
+			.center-align
+				.divider
+				form#frmLogin.col.s12
+					.row.center-align
+						.input-field.col.m10.offset-m1.blue-text
+							i.mdi-action-account-circle.prefix
+							input#icon_prefix.validate(type='text')
+							label(for='icon_prefix') Nombre de Usuario:
+						.input-field.col.m10.offset-m1.blue-text
+							i.mdi-action-lock-open.prefix
+							input#icon-password.validate(type='password')
+							label(for='icon-password') Contraseña
+						.input-field.col.m10.offset-m1.blue-text
+							input#filled-in-box.blue-text(type='checkbox', checked='checked')
+							label(for='filled-in-box') Recordarme
+				.divider
+				p
+					a.btn.btn-flat.white.modal-action.modal-close(href='#') Cancelar
+					a.waves-effect.waves-blue.blue.btn.btn-flat.modal-action#btnLogin(href='#') Login
+					//- button.waves-indigo.indigo.btn.btn-flat.modal-action.modal-close.white-text(type='submit') Login
 
-//- 	//- Modal Structure
-//- 	#modal-register.modal.modal-fixed-footer
-//- 		.modal-content
-//- 			h4 Registro
-//- 			p= "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis explicabo quis repellat placeat voluptatibus rem aut, earum nam asperiores, nulla laudantium, ducimus labore deserunt illo quasi veniam dolor aliquid harum!"
-//- 		.modal-footer
-//- 			a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') Cancelar
-//- 			a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#') Aceptar
+	//- Modal Structure
+	#modal-policy.modal.modal-fixed-footer
+		.modal-content
+			h4 Politica de Privacidad
+			p= "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis explicabo quis repellat placeat voluptatibus rem aut, earum nam asperiores, nulla laudantium, ducimus labore deserunt illo quasi veniam dolor aliquid harum!"
+		.modal-footer
+			a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') Cancelar
+			a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#modal-register') Aceptar
+			p ¿Te vas a echar para atrás con el registro?
+	//- Modal Structure
+	#modal-register.modal.modal-fixed-footer
+		.modal-content
+			h4 Registro
+			p= "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis explicabo quis repellat placeat voluptatibus rem aut, earum nam asperiores, nulla laudantium, ducimus labore deserunt illo quasi veniam dolor aliquid harum!"
+		.modal-footer
+			a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') Cancelar
+			a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#') Aceptar

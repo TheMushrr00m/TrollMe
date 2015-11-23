@@ -2,40 +2,26 @@ if navFixed
 	.navbar-fixed
 		nav.indigo.darken-1
 			.nav-wrapper.container
-				a.brand-logo(href='#')
+				a.brand-logo(href='/')
 					img(src="images/trollme_logo.png")
 				a.button-collapse(href='#', data-activates='nav-mobile') 
 					i.mdi-navigation-menu
 				ul.right.hide-on-med-and-down
-					li 
-						a.waves-effect.waves-light.cta.modal-trigger(href='#modal-login')
-							i.mdi-action-perm-identity
+					li 	
+						a.waves-effect.waves-dark.modal-trigger(href='#modal-login')
+							i.mdi-action-account-circle.prefix
 				ul#nav-mobile.side-nav
 					li
-						a(href='#')
-							input#search(type='search', placeholder='search')
-					li
-						a(href='#') Link
-					li
-						a(href='#') Link
+						a(href='#') Iniciar sesión
 else
 	.nav-wrapper
-		nav.grey.darken-3
+		nav.indigo.darken-1
 			.nav-wrapper.container
-				a.brand-logo(href='#') TrollMe
-					img(src="", alt="")
+				a.brand-logo(href='/')
+					img(src="images/trollme_logo.png")
 				a.button-collapse(href='#', data-activates='nav-mobile') 
 					i.mdi-navigation-menu
 				ul.right.hide-on-med-and-down
-					li 
-						a.waves-effect.waves-light.cta.modal-trigger(href='#modal-login')
-							i.mdi-action-perm-identity
-					li
-						a(href='#')
-							i.mdi-navigation-refresh
-					li
-						a(href='#')
-							i.mdi-navigation-more-vert
 				ul#nav-mobile.side-nav
 					li
 						a(href='#')
@@ -43,4 +29,4 @@ else
 					li
 						a(href='#') Link
 					li
-						a(href='#') Link
+						a(href='#') Iniciar Sesión
