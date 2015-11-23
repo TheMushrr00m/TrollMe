@@ -1,29 +1,38 @@
 express = require 'express'
-config = require './config/config'
 app = express()
 bodyParser = require 'body-parser'
 session = require 'express-session'
+io = require 'socket.io'
+mongoose = require 'mongoose'
+usersSchema = require './Users'
+Users = mongoose.model 'users', usersSchema
 
 port = process.env.OPENSHIFT_NODEJS_PORT or 9000
 server_ip_address = process.env.OPENSHIFT_NODEJS_IP or '127.0.0.1'
 
 app.set 'views', __dirname + '/views'
 app.set 'view engine', 'jade'
-app.use express.static __dirname + '/public'
-app.use bodyParser.json()
+app.use express.static __dirname + '/www'
 app.use bodyParser.urlencoded extended: true
 app.use session secret: 'trollme'
 
 ###ROUTES###
 app.get '/', (request, response) ->
-	response.render 'index'
+	response.render 'index', 
+		title: 'Bienvenido a TrollMe'
+		navFixed: true
+
+app.get '/home', (request, response) ->
+	response.render 'home',
+		title: 'Bienvenido a tu choza!'
+		navFixed: false
 
 app.get '/login', (request, response) ->
 	response.render 'login'
 
 app.get '/trollme', (request, response) ->
 	###response.render 'trollme'###
-	response.sendFile __dirname + '/public/oscar-tests/test3.html'
+	response.sendFile __dirname + '/www/oscar-tests/test3.html'
 
 app.get '/trollme2', (request, response) ->
 	###response.render 'trollme'###
@@ -34,21 +43,19 @@ app.get '/trollme3', (request, response) ->
 	response.sendFile __dirname + '/public/oscar-tests/game1.html'
 
 app.post '/login', (request, response) ->
+	console.log request.body
 	username = request.body.name
 	pass = request.body.pass
-	query = User.find 
-		NombreUsuario: username, 
-		Contraseña: pass
-		(err, docs) -> 
+	console.log Users.findOne
+		NombreUsuario: 'TheMushrr00m',
+		(err, user) ->
 			if err
-				response.redirect 301, '/404'
-			else
-				if not request.session.userId
-					request.session.userId = query.NombreUsuario
-				response.redirect 301, '/home', username
+				return console.error err
+			console.log user
+	response.end()
 
 app.get '/register', (request, response) ->
-	response.render 200, 'register'
+	response.render 'register'
 
 app.all '*', (request, response) ->
 	response.render '404'
