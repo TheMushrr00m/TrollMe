@@ -19,19 +19,19 @@ var paths = {
 
 	//  SASS / CSS Files
 	SASS_SOURCE: 'assets/sass/**/*.scss',
-	SASS_DEST: 'public/css/',
+	SASS_DEST: 'www/css/',
 
 	//  Coffee Script Files
-	COFFEE_SOURCE: 'assets/coffee/**/*.coffee',
+	COFFEE_SOURCE: 'assets/coffee/*.coffee',
 	COFFEE_SOURCE_SERVER: 'assets/coffee/server/*.coffee',
-	COFFEE_SOURCE_CONFIG: 'assets/coffee/config.coffee',
-	COFFEE_DEST: 'public/js/',
+	COFFEE_SOURCE_CONTROLLERS: 'assets/coffee/controllers/*.coffee',
+	COFFEE_DEST: 'www/js/',
 	COFFEE_DEST_SERVER: './',
-	COFFEE_DEST_CONFIG: './config/',
+	COFFEE_DEST_CONTROLLERS: './routes/',
 
 	//  Images Source
 	IMAGE_SOURCE: 'assets/images/**/*',
-	IMAGE_DEST: 'public/images/',
+	IMAGE_DEST: 'www/images/',
 
 	//  Icons
     ICONS_SOURCE: "src/sass/app/components/icons/svg/*.svg",
@@ -74,11 +74,19 @@ gulp.task('coffee', function() {
 });
 
 //  Compile Our Coffee Config Files
-gulp.task('coffee_config', function() {
+/*gulp.task('coffee_config', function() {
 	gulp.src(paths.COFFEE_SOURCE_CONFIG)
 	.pipe(coffee({bare:true})
 		.on('error', gutil.log))
     .pipe(gulp.dest(paths.COFFEE_DEST_CONFIG))
+});*/
+
+//  Compile Our Coffee Routes Files
+gulp.task('coffee_controllers', function() {
+	gulp.src(paths.COFFEE_SOURCE_CONTROLLERS)
+	.pipe(coffee({bare:true})
+		.on('error', gutil.log))
+    .pipe(gulp.dest(paths.COFFEE_DEST_CONTROLLERS))
 });
 
 gulp.task('lint', function() {
@@ -91,7 +99,8 @@ gulp.task('default', function() {
 	gulp.watch(paths.SASS_SOURCE, ['sass']);
 	gulp.watch(paths.COFFEE_SOURCE, ['coffee','lint']);
 	gulp.watch(paths.COFFEE_SOURCE_SERVER, ['coffee_server']);
-	gulp.watch(paths.COFFEE_SOURCE_CONFIG, ['coffee_config']);
+	/*gulp.watch(paths.COFFEE_SOURCE_CONFIG, ['coffee_config']);*/
+	gulp.watch(paths.COFFEE_SOURCE_CONTROLLERS, ['coffee_controllers']);
 	nodemon({
 		script: 'server.js', ext: 'jade coffee'})
         .on('restart', function(){
