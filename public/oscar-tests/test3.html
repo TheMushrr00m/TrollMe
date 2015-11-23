@@ -8,11 +8,16 @@
         body {
             margin: 0;
         }
+        #location {
+            display: none;
+        }
+
+}
     </style>
 </head>
 <body>
 
-    <p id="location">1</p>
+    <p id="location" display="none">1</p>
 
 <script src="html_updater.js"></script>
 
@@ -23,18 +28,19 @@ var locationDiv = document.getElementById('location');
 var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update });
 
 function preload() {
-	game.stage.backgroundColor = '#EFEFEF';
+	game.stage.backgroundColor = '#999999';
 
     // Load the image and create it into an array of images, 32px width 48 pix height
     game.load.spritesheet('dude', 'assets/sprites/dude2.png', 32, 40);
+    game.load.image('parque', 'assets/buildings/parque.png');
     game.load.image('casa', 'assets/buildings/casa.png');
     game.load.image('casa2', 'assets/buildings/casa2.png');
     game.load.image('mall', 'assets/buildings/mall.png');
     game.load.image('tienda', 'assets/buildings/tienda.png');
     game.load.image('tienda2', 'assets/buildings/tienda2.png');
-    game.load.image('edificioFrente', 'assets/buildings/edificioFrente.png')
-    game.load.image('edificioLateral', 'assets/buildings/edificioLateral.png')
-    game.load.physics("sprite_physics", "assets/physics/sprite_physics.json")
+    game.load.image('edificioFrente', 'assets/buildings/edificioFrente.png');
+    game.load.image('edificioLateral', 'assets/buildings/edificioLateral.png');
+    game.load.physics("sprite_physics", "assets/physics/sprite_physics.json");
 }
 
 var player;
@@ -50,6 +56,8 @@ function create() {
     game.physics.startSystem(Phaser.Physics.P2JS);
     game.physics.p2.gravity.y = 0;
 
+    game.add.sprite(248, 637, 'parque');
+
     // Set The Bounds of the world where the camera can move to
 
     player = game.add.sprite(game.world.centerX / 2, game.world.centerY / 2, 'dude');
@@ -64,6 +72,7 @@ function create() {
     player.animations.add('left', [0, 1, 2, 3], 10, true);
     player.animations.add('right', [6, 7, 8, 9], 10, true);
     
+    /*
 	game.add.text(0, 0, "this text scrolls\nwith the background", { font: "32px Arial", fill: "#f26c4f", align: "center" });
 
 	this.t = game.add.text(0, 0, "this text is fixed to the camera", { font: "32px Arial", fill: "#ffffff", align: "center" });
@@ -71,7 +80,7 @@ function create() {
     this.t.fixedToCamera = true;
     // Put an offset to the text
     this.t.cameraOffset.setTo(200, 500);
-
+    */
 
     house2 = buildings.create(1059 + game.cache.getImage('casa2').width / 2, 322 + game.cache.getImage('casa2').height / 2, 'casa2');
     enableP2Physics(house2);

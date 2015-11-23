@@ -22,7 +22,7 @@ function preload() {
     game.load.spritesheet('invader', 'assets/sprites/baddie.png', 32, 32);
     game.load.image('lives', 'assets/sprites/firstaid.png');
     game.load.image('sky', 'assets/backgrounds/sky.png');
-    game.load.spritesheet('player', 'assets/sprites/dude.png', 32, 48);
+    game.load.spritesheet('player', 'assets/sprites/dude.png', 32, 40);
 }
 
 var player;
@@ -217,11 +217,13 @@ function collisionHandler (bullet, alien) {
         enemyBullets.callAll('kill');
         bullets.callAll('kill');
 
-        stateText.text = " You Won, \n Click to restart";
+        stateText.text = " You Won, \n Press Enter to \n Restart";
         stateText.visible = true;
 
         //the "click to restart" handler
-        game.input.onTap.addOnce(restart,this);
+        //this.game.input.onTap.addOnce(restart,this);
+        this.enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+        this.enterKey.onDown.add(restart, this);
     }
 }
 
@@ -243,11 +245,16 @@ function enemyHitsPlayer (player,bullet) {
         bullets.callAll('kill');
 	    aliens.tween.stop()
 
-        stateText.text=" GAME OVER \n Click to restart";
+        stateText.text=" GAME OVER \n Press Enter to \n Restart";
         stateText.visible = true;
 
+        console.log('pero!,FUCK!!!')
+
+
         //the "click to restart" handler
-        game.input.onTap.addOnce(restart,this);
+        //game.input.onTap.addOnce(restart,this);
+        this.enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER); 
+        this.enterKey.onDown.add(restart, this);
     }
 }
 
@@ -274,7 +281,9 @@ function enemyFires () {
         enemyBullet.checkWorldBounds = true;
 		enemyBullet.outOfBoundsKill = true;
 
-        game.physics.arcade.moveToObject(enemyBullet,player,120);
+        game.physics.arcade.moveToObject(enemyBullet,player,180);
+        enemyBullet.body.velocity.x += (Math.floor(Math.random() * 3) - 3) * 15;
+
         enemyBullet.rotation = game.physics.arcade.angleBetween(enemyBullet, player);
         enemyBullet.angle -= 90;
 
@@ -282,9 +291,10 @@ function enemyFires () {
     }
 }
 
-function restart () {
+function restart() {
     //  A new level starts
     
+
     //resets the life count
     lives.callAll('revive');
     //  And brings the aliens back from the dead :)

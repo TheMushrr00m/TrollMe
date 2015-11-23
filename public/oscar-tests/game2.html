@@ -20,7 +20,7 @@ function preload() {
     game.load.image('star', 'assets/sprites/star.png');
     game.load.spritesheet('hazard', 'assets/sprites/baddie.png', 32, 32);
     game.load.image('sky', 'assets/backgrounds/sky.png');
-    game.load.spritesheet('player', 'assets/sprites/dude.png', 32, 48);
+    game.load.spritesheet('player', 'assets/sprites/dude.png', 32, 40);
     game.load.image('lives', 'assets/sprites/firstaid.png');
 }
 
@@ -171,12 +171,13 @@ function hazardHitsPlayer (player, hazard) {
         player.kill();
         enemies.callAll('kill');
         stars.callAll('kill');
-        stateText.text=" GAME OVER \nFinal Score: " + score + "\n Click to restart";
+        stateText.text = " You Won, \n Press Enter to \n Restart";
         stateText.visible = true;
-        play = false;
 
         //the "click to restart" handler
-        game.input.onTap.addOnce(restart,this);
+        //this.game.input.onTap.addOnce(restart,this);
+        this.enterKey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+        this.enterKey.onDown.add(restart, this);
     }
 }
 
