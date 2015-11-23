@@ -1,0 +1,9 @@
+body {
+    background-color: #61B9CC;
+}
+#content {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    height: 60%
+}
