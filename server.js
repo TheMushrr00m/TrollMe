@@ -57,7 +57,7 @@ app.get('/home', function(request, response) {
   var breadcrumbs;
   breadcrumbs = {
     Inicio: {
-      addres: '/',
+      address: '/',
       text: 'Inicio'
     },
     Perfil: {
@@ -73,24 +73,39 @@ app.get('/home', function(request, response) {
 });
 
 app.post('/login', function(request, response) {
-  var pass, username;
+  var data;
   console.log(request.body);
-  username = request.body.name;
-  pass = request.body.pass;
-  return Users.findOne({
-    NombreUsuario: 'TheMushrr00m'
+  data = request.body;
+  return console.log(Users.findOne({
+    NombreUsuario: data.name
   }, function(err, user) {
+    console.log(user);
     if (err) {
       console.error(err);
       return {
         url: '/'
       };
     }
-
-    /*console.log user */
     return response.send({
       url: '/home'
     });
+  }));
+});
+
+app.get('/registro', function(request, response) {
+  var breadcrumbs;
+  breadcrumbs = {
+    Inicio: {
+      address: '/',
+      text: 'Inicio'
+    },
+    Perfil: {
+      address: '/registro',
+      text: 'Registro de usuario'
+    }
+  };
+  return response.render('register', {
+    breadcrumbs: breadcrumbs
   });
 });
 
@@ -100,24 +115,22 @@ app.get('/trollme', function(request, response) {
   return response.sendFile(__dirname + '/www/oscar-tests/test3.html');
 });
 
-app.get('/trollme2', function(request, response) {
-
-  /*response.render 'trollme' */
-  return response.sendFile(__dirname + '/public/oscar-tests/game1.html');
-});
-
-app.get('/trollme3', function(request, response) {
-
-  /*response.render 'trollme' */
-  return response.sendFile(__dirname + '/public/oscar-tests/game1.html');
-});
-
-app.get('/register', function(request, response) {
-  return response.render('register');
-});
-
 app.all('*', function(request, response) {
-  return response.render('404');
+  var breadcrumbs;
+  breadcrumbs = {
+    Inicio: {
+      address: '/',
+      text: 'Inicio'
+    },
+    Perdido: {
+      address: '' + request.url,
+      text: 'Lugar equivocado'
+    }
+  };
+  return response.render('404', {
+    navFixed: true,
+    breadcrumbs: breadcrumbs
+  });
 });
 
 app.listen(port, function() {

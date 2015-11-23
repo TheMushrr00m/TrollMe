@@ -1,54 +1,42 @@
 $(document).ready(function() {
-  return $('.parallax').parallax();
+  var $btnLogin;
+  $('.button-collapse').sideNav();
 
-  /*$('.button-collapse').sideNav()
-  $('.modal-trigger').leanModal (e) ->
-    e.preventDefault()
-  $('#aside').pushpin({ top: 150, bottom: 300 })
-  
-  $('.modal-trigger').leanModal(
-    dismissible: true
-  )
-    
-  $frmLogin = $('#frmLogin')
-  $frmLogin.submit (e) ->
-    e.preventDefault()
-    $frmLogin = $('#frmLogin')
-    $.ajax
-      url: '/login'
-      type: 'POST'
-      data: $frmLogin.serialize(),
-      success: (data, textStatus, jqXHR) ->
-        console.log "Success: #{data}"
-      error: (jqXHR, textStatus, errorThrown) ->
-        console.log 'Error'
-      complete: ->
-        $('#icon_prefix').val ''
-        $('#icon-password').val ''
-   */
+  /*Inicializa el efecto Parallax */
+  $('.parallax').parallax();
 
-  /*$('#log-btn').click ->
-    data =
-      name: $('#name').val()
-      pass: $('#pass').val()
-    $.ajax
-    url: "/home/#{data.name}"
-    dataType: 'html'
-    type: 'GET'
-    data: JSON.stringify(data)
-    error: (jqXHR, textStatus, errorThrown) ->
-    success: (data, textStatus, jqXHR) ->
-   */
-
-  /*$('#registro').click ->
-    data =
-      name: 'TheMushrr00m'
-    $.ajax
-    url: '/register'
-    dataType: 'html'
-    type: 'POST'
-    data: JSON.stringify(data)
-    error: (jqXHR, textStatus, errorThrown) ->
-    success: (data, textStatus, jqXHR) ->
-   */
+  /*Inicializa el soporte de los modals */
+  $('.modal-trigger').leanModal({
+    dismissible: false,
+    opacity: .8,
+    ready: function() {
+      return console.log('Ready');
+    },
+    complete: function() {
+      return console.log('Closed');
+    }
+  });
+  $btnLogin = $('#btnLogin');
+  return $btnLogin.click(function(e) {
+    var data;
+    e.preventDefault();
+    data = {
+      name: $('#icon_prefix').val(),
+      pass: $('#icon-password').val()
+    };
+    return $.ajax({
+      url: '/login',
+      type: 'POST',
+      data: JSON.stringify(data),
+      success: function(data, textStatus, jqXHR) {
+        return console.log("Success: " + data);
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        return console.error('Error');
+      },
+      complete: function() {
+        return window.location = '/home';
+      }
+    });
+  });
 });

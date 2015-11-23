@@ -31,7 +31,7 @@ app.get '/', (request, response) ->
 app.get '/home', (request, response) ->
 	breadcrumbs =
 		Inicio: 
-			addres: '/'
+			address: '/'
 			text: 'Inicio'
 		Perfil:
 			address: '/home'
@@ -43,35 +43,44 @@ app.get '/home', (request, response) ->
 
 app.post '/login', (request, response) ->
 	console.log request.body
-	username = request.body.name
-	pass = request.body.pass
-	Users.findOne
-		NombreUsuario: 'TheMushrr00m',
+	data = request.body
+	console.log Users.findOne
+		NombreUsuario: data.name
 		(err, user) ->
+			console.log user
 			if err
 				console.error err
 				return url: '/'
-			###console.log user###
-			response.send 
+			response.send
 				url: '/home'
+
+app.get '/registro', (request, response) ->
+	breadcrumbs =
+		Inicio: 
+			address: '/'
+			text: 'Inicio'
+		Perfil:
+			address: '/registro'
+			text: 'Registro de usuario'
+	response.render 'register',
+		breadcrumbs: breadcrumbs
 
 app.get '/trollme', (request, response) ->
 	###response.render 'trollme'###
 	response.sendFile __dirname + '/www/oscar-tests/test3.html'
 
-app.get '/trollme2', (request, response) ->
-	###response.render 'trollme'###
-	response.sendFile __dirname + '/public/oscar-tests/game1.html'
-
-app.get '/trollme3', (request, response) ->
-	###response.render 'trollme'###
-	response.sendFile __dirname + '/public/oscar-tests/game1.html'
-
-app.get '/register', (request, response) ->
-	response.render 'register'
-
 app.all '*', (request, response) ->
-	response.render '404'
+	breadcrumbs =
+		Inicio: 
+			address: '/'
+			text: 'Inicio'
+		Perdido:
+			address: '' + request.url
+			text: 'Lugar equivocado'
+	response.render '404',
+		navFixed: true
+		breadcrumbs: breadcrumbs
+
 
 app.listen port, ->
 	console.log "Listening on #{server_ip_address}:#{port}!" 

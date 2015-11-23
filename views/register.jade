@@ -4,14 +4,18 @@ block title
 	title Create an Account!
 
 block content
-	main
-		.row
-		h1= 'Register!'    
-		div.container
-			a(href='/login')
-				button#login To Login!
-			a(href='#')
-				button#registro Register!
-		div#test
-block extrajs
-	script(src='js/main.js')
+	//- MAIN CONTENT
+	.parallax-container
+		.parallax
+			img(src="images/background1.jpg")
+	.section.indigo.darken-1
+		.row.container
+			ul.breadcrumbs
+			for crumb in breadcrumbs
+				a(href='#{crumb.address}') #{crumb.text} > 
+	.section.white
+		.row.container
+			h2='Bienvenido :Username' 
+			.chip
+				img(src='images/themushrr00m.jpeg', alt='username_pic')
+				| Username
