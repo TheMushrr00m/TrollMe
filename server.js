@@ -74,22 +74,20 @@ app.get('/home', function(request, response) {
 
 app.post('/login', function(request, response) {
   var data;
-  console.log(request.body);
   data = request.body;
-  return console.log(Users.findOne({
-    NombreUsuario: data.name
-  }, function(err, user) {
-    console.log(user);
+  console.log('Credenciales!!');
+  console.log(data.name);
+  console.log(data.pass);
+  return Users.findOne({
+    NombreUsuario: data.name,
+    Contraseña: data.pass
+  }, function(err, doc) {
     if (err) {
-      console.error(err);
-      return {
-        url: '/'
-      };
+      console.log('Error: ', err);
     }
-    return response.send({
-      url: '/home'
-    });
-  }));
+    console.log('Docs: ', doc);
+    return response.redirect('/');
+  });
 });
 
 app.get('/registro', function(request, response) {

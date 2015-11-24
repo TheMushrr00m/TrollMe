@@ -27,15 +27,16 @@ $(document).ready(function() {
     return $.ajax({
       url: '/login',
       type: 'POST',
-      data: JSON.stringify(data),
+      data: data,
       success: function(data, textStatus, jqXHR) {
-        return console.log("Success: " + data);
+        return console.log('', data);
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        return console.error('Error');
+        return console.error('Error', errorThrown);
       },
       complete: function() {
-        return window.location = '/home';
+
+        /*window.location = '/home' */
       }
     });
   });

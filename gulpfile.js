@@ -24,10 +24,10 @@ var paths = {
 	//  Coffee Script Files
 	COFFEE_SOURCE: 'assets/coffee/*.coffee',
 	COFFEE_SOURCE_SERVER: 'assets/coffee/server/*.coffee',
-	COFFEE_SOURCE_CONTROLLERS: 'assets/coffee/controllers/*.coffee',
+	COFFEE_SOURCE_ROUTES: 'assets/coffee/routes/*.coffee',
 	COFFEE_DEST: 'www/js/',
 	COFFEE_DEST_SERVER: './',
-	COFFEE_DEST_CONTROLLERS: './routes/',
+	COFFEE_DEST_ROUTES: './routes/',
 
 	//  Images Source
 	IMAGE_SOURCE: 'assets/images/**/*',
@@ -73,20 +73,12 @@ gulp.task('coffee', function() {
     .pipe(gulp.dest(paths.COFFEE_DEST))
 });
 
-//  Compile Our Coffee Config Files
-/*gulp.task('coffee_config', function() {
-	gulp.src(paths.COFFEE_SOURCE_CONFIG)
-	.pipe(coffee({bare:true})
-		.on('error', gutil.log))
-    .pipe(gulp.dest(paths.COFFEE_DEST_CONFIG))
-});*/
-
 //  Compile Our Coffee Routes Files
 gulp.task('coffee_controllers', function() {
-	gulp.src(paths.COFFEE_SOURCE_CONTROLLERS)
+	gulp.src(paths.COFFEE_SOURCE_ROUTES)
 	.pipe(coffee({bare:true})
 		.on('error', gutil.log))
-    .pipe(gulp.dest(paths.COFFEE_DEST_CONTROLLERS))
+    .pipe(gulp.dest(paths.COFFEE_DEST_ROUTES))
 });
 
 gulp.task('lint', function() {

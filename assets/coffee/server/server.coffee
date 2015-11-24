@@ -42,17 +42,18 @@ app.get '/home', (request, response) ->
 		breadcrumbs: breadcrumbs
 
 app.post '/login', (request, response) ->
-	console.log request.body
 	data = request.body
-	console.log Users.findOne
+	console.log 'Credenciales!!'
+	console.log data.name
+	console.log data.pass
+	Users.findOne
 		NombreUsuario: data.name
-		(err, user) ->
-			console.log user
-			if err
-				console.error err
-				return url: '/'
-			response.send
-				url: '/home'
+		Contraseña: data.pass
+	, (err, doc) ->
+		if err
+			console.log 'Error: ', err
+		console.log 'Docs: ', doc
+		response.redirect '/'
 
 app.get '/registro', (request, response) ->
 	breadcrumbs =

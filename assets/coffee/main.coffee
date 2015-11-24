@@ -21,10 +21,10 @@ $(document).ready ->
     $.ajax
       url: '/login'
       type: 'POST'
-      data: JSON.stringify(data),
+      data: data,
       success: (data, textStatus, jqXHR) ->
-        console.log "Success: #{data}"
+        console.log '', data
       error: (jqXHR, textStatus, errorThrown) ->
-        console.error 'Error'
+        console.error 'Error', errorThrown
       complete: ->
-        window.location = '/home'
+        ###window.location = '/home'###
