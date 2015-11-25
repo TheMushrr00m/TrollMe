@@ -25,7 +25,7 @@
 
     var magicWidthNumber = 0.60
     var magicHeightNumber = 0.80
-    
+
     if( /Internet Explorer|Firefox/i.test(navigator.userAgent) ) 
     {
         window.devicePixelRatio = 1;
@@ -69,13 +69,14 @@
         game.load.physics('sprite_physics', 'oscar-tests/assets/physics/sprite_physics.json');
     }
 
+    var buildings;
     var player;
     var cursors;
     var t;
-    var shop2;
 
-    var tile;
-    //var group_all;
+    var group_all;
+
+    var dicks;
 
     function create() {
         game.world.setBounds(0, 0, MAP_WIDTH, MAP_HEIGHT);
@@ -85,16 +86,20 @@
         game.add.sprite(248, 637, 'parque');
 
         // Set The Bounds of the world where the camera can move to
+        buildings = game.add.group();
+        //group_all = game.add.group();
 
-        player = game.add.sprite(game.world.centerX, game.world.centerY, 'dude');
+        //player = buildings.create(game.world.centerX, game.world.centerY, 'dude');
+        player = buildings.create(game.world.centerX, game.world.centerY, 'dude');
         game.physics.p2.enable(player);
+        player["z_depth"] = player.body.y + (player.height / 2);
+        //console.log(player.z_depth);
+
 
         player.body.fixedRotation = true;
         player.body.clearShapes();
         player.body.loadPolygon('sprite_physics', 'lil_dude');
 
-        buildings = game.add.group();
-        //group_all = game.add.group();
 
         player.animations.add('left', [0, 1, 2, 3], 10, true);
         player.animations.add('right', [6, 7, 8, 9], 10, true);
@@ -109,35 +114,51 @@
         this.t.cameraOffset.setTo(200, 500);
         */
 
-        house2 = buildings.create(1059 + game.cache.getImage('casa2').width / 2, 322 + game.cache.getImage('casa2').height / 2, 'casa2');
-        enableP2Physics(house2);
+        var house2 = buildings.create(1059 + game.cache.getImage('casa2').width / 2, 322 + game.cache.getImage('casa2').height / 2, 'casa2');
+        enableP2Physics(house2, 86);
 
-        var house2 = buildings.create(827 + game.cache.getImage('casa2').width / 2, 438 + game.cache.getImage('casa2').height / 2, 'casa2');
-        enableP2Physics(house2);
+
+        house2 = buildings.create(827 + game.cache.getImage('casa2').width / 2, 438 + game.cache.getImage('casa2').height / 2, 'casa2');
+        enableP2Physics(house2, 86);
+
+        //console.log(house2.body.y, house2.body.y + (house2.height / 2));
 
         var house = buildings.create(639 + game.cache.getImage('casa').width / 2, 609 + game.cache.getImage('casa').height / 2, 'casa');
-        enableP2Physics(house);
+        enableP2Physics(house, 80);
+
+        dicks = house.z_depth;
+        //console.log(house.z_depth);
         
         var shop = buildings.create(530 + game.cache.getImage('tienda').width / 2, 708 + game.cache.getImage('tienda').height / 2, 'tienda');
-        enableP2Physics(shop);
+        enableP2Physics(shop, 71);
+
+        //console.log(shop.z_depth);
 
         var shop2 = buildings.create(400 + game.cache.getImage('tienda2').width / 2, 826 + game.cache.getImage('tienda2').height / 2, 'tienda2');
-        enableP2Physics(shop2);
+        enableP2Physics(shop2, 43);
+
+        //console.log(shop2.z_depth);
 
         var buildingFront = buildings.create(0 + game.cache.getImage('edificioFrente').width / 2, 570 + game.cache.getImage('edificioFrente').height / 2, 'edificioFrente');
-        enableP2Physics(buildingFront);
+        enableP2Physics(buildingFront, 110);
+
+        //console.log(buildingFront.z_depth);
 
         var buildingLateral = buildings.create(1399 + game.cache.getImage('edificioLateral').width / 2, 0 + game.cache.getImage('edificioLateral').height / 2, 'edificioLateral');
-        enableP2Physics(buildingLateral);
+        enableP2Physics(buildingLateral, 109);
         
         buildingLateral = buildings.create(1602 + game.cache.getImage('edificioLateral').width / 2, 117 + game.cache.getImage('edificioLateral').height / 2, 'edificioLateral');
-        enableP2Physics(buildingLateral);
+        enableP2Physics(buildingLateral, 109);
         
         buildingLateral = buildings.create(1805 + game.cache.getImage('edificioLateral').width / 2, 227 + game.cache.getImage('edificioLateral').height / 2, 'edificioLateral');
-        enableP2Physics(buildingLateral);
+        enableP2Physics(buildingLateral, 109);
+
+        //console.log(buildingLateral.z_depth);
 
         var mall = buildings.create(2007 + game.cache.getImage('mall').width / 2, 572 + game.cache.getImage('mall').height / 2, 'mall');
-        enableP2Physics(mall);
+        enableP2Physics(mall, 210);
+
+        //console.log(mall.z_depth);
 
         game.camera.follow(player);
 
@@ -153,10 +174,12 @@
     }
 
     function update() {
-        //console.log(locationDiv.innerHTML);
+        //console.log(player.body.y, dicks);
         var moving = false;
         //player.body.velocity.x = 0;
         //player.body.velocity.y = 0;
+
+        player.z_depth = player.body.y + player.height;
 
         if (game.input.mousePointer.isDown) 	
         {
@@ -242,12 +265,15 @@
                 
         }
 
-        //group_all.sort('y', Phaser.Group.SORT_ASCENDING);
+        //group_all.sort('z_depth', Phaser.Group.SORT_ASCENDING);
+        console.log(dicks, player.z_depth);
+        buildings.sort('z_depth', Phaser.Group.SORT_ASCENDING);
     }
 
-    function enableP2Physics(object1)
+    function enableP2Physics(object1, yy)
     {
         game.physics.p2.enable(object1, false);
+        object1["z_depth"] = (object1.body.y + (object1.height / 2)) - yy;
         object1.body.offset.setTo();
         object1.body.static = true;
         object1.body.fixedRotation = true;
