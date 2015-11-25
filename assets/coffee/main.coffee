@@ -1,28 +1,30 @@
-
 $(document).ready ->
-  ###$('#log-btn').click ->
-    data =
-      name: $('#name').val()
-      pass: $('#pass').val()
-    $.ajax
-    url: "/home/#{data.name}"
-    dataType: 'html'
-    type: 'GET'
-    data: JSON.stringify(data)
-    error: (jqXHR, textStatus, errorThrown) ->
-    success: (data, textStatus, jqXHR) ->###
-
-  ###$('#registro').click ->
-    data =
-      name: 'TheMushrr00m'
-    $.ajax
-    url: '/register'
-    dataType: 'html'
-    type: 'POST'
-    data: JSON.stringify(data)
-    error: (jqXHR, textStatus, errorThrown) ->
-    success: (data, textStatus, jqXHR) ->###
-  
+  $('.button-collapse').sideNav()
+  ###Inicializa el efecto Parallax###
+  $('.parallax').parallax()
+  ###Inicializa el soporte de los modals###
   $('.modal-trigger').leanModal(
     dismissible: false
-  )
+    opacity: .8
+    ready: ->
+      console.log 'Ready'
+    complete: ->
+      console.log 'Closed'
+    )
+  
+  $btnLogin = $('#btnLogin')
+  $btnLogin.click (e) ->
+    e.preventDefault()
+    data =
+      name: $('#icon_prefix').val()
+      pass: $('#icon-password').val(),
+    $.ajax
+      url: '/login'
+      type: 'POST'
+      data: data,
+      success: (data, textStatus, jqXHR) ->
+        console.log '', data
+      error: (jqXHR, textStatus, errorThrown) ->
+        console.error 'Error', errorThrown
+      complete: ->
+        ###window.location = '/home'###

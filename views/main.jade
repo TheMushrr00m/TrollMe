@@ -3,8 +3,8 @@ html(lang='en')
    head
       meta(prefix="og: http://ogp.me/ns#")
       meta(charset='UTF-8')
-      block title
       meta(http-equiv='Content-Type' content='text/html; charset=UTF-8')
+      block title
       meta(name='author', content='Gamex Studios')
       meta(name="application-name", content="TrollMe App!")
       meta(property="og:title", content="TrollMe App!")
@@ -15,14 +15,13 @@ html(lang='en')
       meta(name="viewport", content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1.0")
       //- Import Materialize.css
       link(rel="stylesheet", href="css/vendor/materialize.css", type='text/css', media='screen, projection')
-      link(rel='stylesheet', type='text/css', href='css/main.css' media='screen, projection')
+      link(rel='stylesheet', href='css/main.css', type='text/css', media='screen, projection')
       block extracss
 
    body
       include ./nav.jade
       block content
       include ./footer.jade
-      //- Import jQuery before materialize.js
       script(src='js/vendor/jquery-2.1.4.min.js')
       script(src='js/vendor/materialize.js')
       script(src='js/main.js')

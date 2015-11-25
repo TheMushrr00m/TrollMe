@@ -3,6 +3,7 @@
 .directory
 .git/
 .idea/
+.Pruebas/
 bower_*/
 node_modules/
 Relleno/
