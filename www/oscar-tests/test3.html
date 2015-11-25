@@ -20,29 +20,40 @@
 <script src="oscar-tests/html_updater.js"></script>
 
 <script type="text/javascript">
-    var locationDiv = document.getElementById('location');
+
+    var locationDiv = document.getElementById('location')
 
     var magicWidthNumber = 0.60
     var magicHeightNumber = 0.80
-    var width = window.innerWidth * window.devicePixelRatio;
-    var height = window.innerHeight * window.devicePixelRatio;
+    
+    if( /Internet Explorer|Firefox/i.test(navigator.userAgent) ) 
+    {
+        window.devicePixelRatio = 1;
+    }
 
-    const SAFE_ZONE_WIDTH = 2724;
-    const SAFE_ZONE_HEIGHT = 1875;
+    var width = window.screen.availWidth * window.devicePixelRatio * magicWidthNumber;
+    var height = window.screen.availHeight * window.devicePixelRatio * magicHeightNumber;
+
+    //var availWidth = window.screen.availWidth * magicWidthNumber;
+    //var availHeight = window.screen.availHeight * magicHeightNumber;
+
+
+    const MAP_WIDTH = 2724;
+    const MAP_HEIGHT = 1875;
 
     //var lGameScale;
 
-    var game = new Phaser.Game(width * magicWidthNumber, height * magicHeightNumber, Phaser.CANVAS, 'trollme', { preload: preload, create: create, update: update}); //800, 600
+    var game = new Phaser.Game(width, height, Phaser.CANVAS, 'trollme', { preload: preload, create: create, update: update}); //800, 600
 
     function preload() {
         window.addEventListener('resize', function() {
             resize();
         });
         //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-        game.scale.minWidth = 800/2;
-        game.scale.minHeight = 600/2;
-        game.scale.maxWidth = 800;
-        game.scale.maxHeight = 600;
+        game.scale.minWidth = width/2;
+        game.scale.minHeight = height/2;
+        game.scale.maxWidth = width;
+        game.scale.maxHeight = height;
     	game.stage.backgroundColor = '#999999';
 
         // Load the image and create it into an array of images, 32px width 48 pix height
@@ -67,7 +78,7 @@
     //var group_all;
 
     function create() {
-        game.world.setBounds(0, 0, SAFE_ZONE_WIDTH, SAFE_ZONE_HEIGHT);
+        game.world.setBounds(0, 0, MAP_WIDTH, MAP_HEIGHT);
         game.physics.startSystem(Phaser.Physics.P2JS);
         game.physics.p2.gravity.y = 0;
 
@@ -138,6 +149,7 @@
         //group_all.add(buildings);
 
         cursors = game.input.keyboard.createCursorKeys();
+        resize();
     }
 
     function update() {
@@ -253,14 +265,14 @@
         //lGameScale = Math.round(10000 * Math.min(game.width / SAFE_ZONE_WIDTH,game.height / SAFE_ZONE_HEIGHT)) / 10000;
         //width = window.innerWidth * window.devicePixelRatio;
         //height = window.innerHeight * window.devicePixelRatio;
-        /*
-        game.width = width;
-        game.height = height;
+        
+        //game.width = width;
+        //game.height = height;
 
-        game.scale.setGameSize(width * magicWidthNumber, height * magicHeightNumber);
+        //game.scale.setGameSize(width * magicWidthNumber, height * magicHeightNumber);
 
-        game.renderer.resize(width * magicWidthNumber, height * magicHeightNumber);
-        */
+        //game.renderer.resize(width * magicWidthNumber, height * magicHeightNumber);
+        
 
         //game.stage.setTo (lGameScale,lGameScale);
         //world.x=(game.width-SAFE_ZONE_WIDTH*lGameScale)/2;
