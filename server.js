@@ -10,11 +10,11 @@ favicon = require('serve-favicon');
 
 session = require('express-session');
 
-mongoose = require('mongoose');
+//mongoose = require('mongoose');
 
-usersSchema = require('./Users');
+//usersSchema = require('./Users');
 
-Users = mongoose.model('users', usersSchema);
+//Users = mongoose.model('users', usersSchema);
 
 port = process.env.OPENSHIFT_NODEJS_PORT || 9000;
 
@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-app.use(favicon(__dirname + '/www/favicon.ico'));
+//app.use(favicon(__dirname + '/www/favicon.ico'));
 
 app.use(session({
   secret: 'trollme'

@@ -3,7 +3,7 @@
 <head> 
 	<meta charset="UTF-8" />
     <title>Phaser - Making your first game, part 8</title>
-    <script type="text/javascript" src="js/phaser-ninja-physics.js"></script>
+    <script type="text/javascript" src="oscar-tests/js/phaser-ninja-physics.js"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -17,11 +17,11 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
 function preload() {
-    game.load.image('bullet', 'assets/sprites/diamond.png');
-    game.load.image('sky', 'assets/backgrounds/sky.png');
-    game.load.image('ground', 'assets/sprites/platform.png');
-    game.load.image('star', 'assets/sprites/star.png');
-    game.load.spritesheet('dude', 'assets/sprites/dude.png', 32, 48);
+    game.load.image('bullet', 'oscar-tests/assets/sprites/diamond.png');
+    game.load.image('sky', 'oscar-tests/assets/backgrounds/sky.png');
+    game.load.image('ground', 'oscar-tests/assets/sprites/platform.png');
+    game.load.image('star', 'oscar-tests/assets/sprites/star.png');
+    game.load.spritesheet('dude', 'oscar-tests/assets/sprites/dude.png', 32, 40);
 }
 
 //Global Variables
