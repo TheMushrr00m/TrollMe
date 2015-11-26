@@ -57,7 +57,9 @@
     	game.stage.backgroundColor = '#999999';
 
         // Load the image and create it into an array of images, 32px width 48 pix height
-        game.load.spritesheet('dude', 'oscar-tests/assets/sprites/dude2.png', 32, 40);
+        //game.load.spritesheet('dude', 'oscar-tests/assets/sprites/dude2.png', 32, 40);
+        game.load.spritesheet('espanol', 'oscar-tests/assets/sprites/espanol.png', 32, 40);
+        
         game.load.image('parque', 'oscar-tests/assets/buildings/parque.png');
         game.load.image('casa', 'oscar-tests/assets/buildings/casa.png');
         game.load.image('casa2', 'oscar-tests/assets/buildings/casa2.png');
@@ -90,7 +92,7 @@
         //group_all = game.add.group();
 
         //player = buildings.create(game.world.centerX, game.world.centerY, 'dude');
-        player = buildings.create(game.world.centerX, game.world.centerY, 'dude');
+        player = buildings.create(game.world.centerX, game.world.centerY, 'espanol');
         game.physics.p2.enable(player);
         player["z_depth"] = player.body.y + (player.height / 2);
         //console.log(player.z_depth);
@@ -101,8 +103,13 @@
         player.body.loadPolygon('sprite_physics', 'lil_dude');
 
 
-        player.animations.add('left', [0, 1, 2, 3], 10, true);
-        player.animations.add('right', [6, 7, 8, 9], 10, true);
+        //player.animations.add('left', [0, 1, 2, 3], 10, true);
+        //player.animations.add('right', [6, 7, 8, 9], 10, true);
+
+        player.animations.add('right', [0, 1, 2, 3], 10, true);
+        player.animations.add('front', [5, 6, 7], 10, true);
+        player.animations.add('back', [8, 9, 10], 10, true);
+        player.animations.add('left', [11, 12, 13, 14], 10, true);
 
         /*
     	game.add.text(0, 0, "this text scrolls\nwith the background", { font: "32px Arial", fill: "#f26c4f", align: "center" });
@@ -176,6 +183,7 @@
     function update() {
         //console.log(player.body.y, dicks);
         var moving = false;
+        var animation = false;
         //player.body.velocity.x = 0;
         //player.body.velocity.y = 0;
 
@@ -200,11 +208,11 @@
             {
             	if (player.body.velocity.y > 0 )
             	{
-            		player.frame = 4;
+            		player.animations.play('front');
             	}
             	else
             	{
-            		player.frame = 5;
+            		player.animations.play('back');
             	}
             }
 
@@ -222,15 +230,40 @@
         }
         else
         {
+            animation = false;
+            if (cursors.left.isDown)
+            {
+                player.body.moveLeft(400);
+                player.animations.play('left');
+                moving = true;
+                animation = true;
+            }
+            else if (cursors.right.isDown)
+            {
+                player.animations.play('right');
+                player.body.moveRight(400);
+                moving = true;
+                animation = true;
+            }
+            else
+            {
+                player.body.velocity.x = 0;
+            }
             if (cursors.up.isDown)
             {
-                player.frame = 5;
+                if (!animation)
+                {
+                    player.animations.play('back');                    
+                }
                 player.body.moveUp(400);
                 moving = true;
             }
             else if (cursors.down.isDown)
             {
-                player.frame = 4;
+                if (!animation)
+                {
+                    player.animations.play('front');                    
+                }
                 player.body.moveDown(400);
                 moving = true;
             }
@@ -238,22 +271,7 @@
             {
                 player.body.velocity.y = 0;
             }
-            if (cursors.left.isDown)
-            {
-                player.body.moveLeft(400);
-                player.animations.play('left');
-                moving = true;
-            }
-            else if (cursors.right.isDown)
-            {
-                player.animations.play('right');
-                player.body.moveRight(400);
-                moving = true;
-            }
-            else
-            {
-                player.body.velocity.x = 0;
-            }
+            
             if(!moving)
             {
                 player.body.velocity.x = 0;
@@ -266,7 +284,6 @@
         }
 
         //group_all.sort('z_depth', Phaser.Group.SORT_ASCENDING);
-        console.log(dicks, player.z_depth);
         buildings.sort('z_depth', Phaser.Group.SORT_ASCENDING);
     }
 
