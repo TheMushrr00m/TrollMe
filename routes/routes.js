@@ -81,7 +81,12 @@ exports.trollme = function(request, response) {
 			text: 'Lugar Equivocado'
 		}
 	};
-	response.sendFile(__dirname + '/www/oscar-tests/test3.html');
+	// Fix para mostrar temporalmente el archivo :V
+	//=============================================
+	var path = __dirname;
+	path = path.replace('routes', 'www/oscar-tests/test3.html');
+	//=============================================
+	response.sendFile(path);
 };
 
 /*Maneja el código de cualquier otra ruta (Error 404) */
