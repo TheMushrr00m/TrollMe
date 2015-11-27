@@ -2,6 +2,7 @@ express = require 'express'
 app = express()
 bodyParser = require 'body-parser'
 favicon = require 'serve-favicon'
+routes = require './routes/routes'
 session = require 'express-session'
 mongoose = require 'mongoose'
 usersSchema = require './Users'
@@ -18,70 +19,17 @@ app.use favicon __dirname + '/www/favicon.ico'
 app.use session secret: 'trollme'
 
 ###ROUTES###
-app.get '/', (request, response) ->
-	breadcrumbs =
-		Inicio: 
-			address: '/'
-			text: 'Inicio'
-	response.render 'index', 
-		title: 'Bienvenido a TrollMe'
-		navFixed: true
-		breadcrumbs: breadcrumbs
+app.get '/', routes.index
 
-app.get '/home', (request, response) ->
-	breadcrumbs =
-		Inicio: 
-			address: '/'
-			text: 'Inicio'
-		Perfil:
-			address: '/home'
-			text: 'Perfil de Usuario'
-	response.render 'home',
-		title: 'Bienvenido a tu choza!'
-		navFixed: false
-		breadcrumbs: breadcrumbs
+app.get '/usuario', routes.home
 
-app.post '/login', (request, response) ->
-	data = request.body
-	console.log 'Credenciales!!'
-	console.log data.name
-	console.log data.pass
-	Users.findOne
-		NombreUsuario: data.name
-		Contraseña: data.pass
-	, (err, doc) ->
-		if err
-			console.log 'Error: ', err
-		console.log 'Docs: ', doc
-		response.redirect '/'
+app.get '/registro', routes.registro
 
-app.get '/registro', (request, response) ->
-	breadcrumbs =
-		Inicio: 
-			address: '/'
-			text: 'Inicio'
-		Perfil:
-			address: '/registro'
-			text: 'Registro de usuario'
-	response.render 'register',
-		breadcrumbs: breadcrumbs
+app.get '/trollme', routes.trollme
 
-app.get '/trollme', (request, response) ->
-	###response.render 'trollme'###
-	response.sendFile __dirname + '/www/oscar-tests/test3.html'
+app.all '*', routes.error
 
-app.all '*', (request, response) ->
-	breadcrumbs =
-		Inicio: 
-			address: '/'
-			text: 'Inicio'
-		Perdido:
-			address: '' + request.url
-			text: 'Lugar equivocado'
-	response.render '404',
-		navFixed: true
-		breadcrumbs: breadcrumbs
-
+app.post '/login', routes.login
 
 app.listen port, ->
-	console.log "Listening on #{server_ip_address}:#{port}!" 
+  console.log "Listening on #{server_ip_address}:#{port}!"
