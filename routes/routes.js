@@ -79,10 +79,11 @@ exports.trollme = function(request, response) {
 	};
 	// Fix para mostrar temporalmente el archivo :V
 	//=============================================
-	var path = __dirname;
-	path = path.replace('routes', 'www/oscar-tests/test3.html');
+	/*var path = __dirname;
+	path = path.replace('routes', 'www/oscar-tests/test3.html');*/
 	//=============================================
-	response.sendFile(path);
+	/*response.sendFile(path);*/
+	response.render('trollme');
 };
 
 /*Maneja el código de cualquier otra ruta (Error 404) */
