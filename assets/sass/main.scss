@@ -42,3 +42,19 @@ nav img {
   max-width: 300px;
   transition: all 0.1s ease;
 }
+.parallax-container {
+    min-height: 400px;
+    line-height: 0;
+    height: auto;
+    color: rgba(255, 255, 255, 0.9);
+    .section {
+        width: 100%;
+        margin-top: 5px;
+    }
+}
+footer.page-footer {
+    margin: 0;
+    ul li {
+        text-align: center;
+    }
+}
