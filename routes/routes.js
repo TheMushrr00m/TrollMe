@@ -38,7 +38,9 @@ exports.login = function(request, response) {
 TODO: Pasarlo a plantillas de JADE
 */
 exports.trollme = function(request, response) {
-	response.render('trollme');
+	response.render('trollme',{
+		title: 'Trolling | Now'
+	});
 };
 
 /*Maneja el código de cualquier otra ruta (Error 404) */
