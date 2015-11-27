@@ -10,8 +10,7 @@ $(document).ready ->
       console.log 'Ready'
     complete: ->
       console.log 'Closed'
-    )
-  
+  )
   $btnLogin = $('#btnLogin')
   $btnLogin.click (e) ->
     e.preventDefault()
