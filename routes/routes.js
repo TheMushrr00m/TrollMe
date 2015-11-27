@@ -2,8 +2,7 @@
 exports.index = function(request, response) {
 	response.render('index', { 
 		title: 'Bienvenido a TrollMe',
-		navFixed: true,
-		breadcrumbs: breadCrumbs 
+		navFixed: true
 	});
 };
 
@@ -11,8 +10,7 @@ exports.index = function(request, response) {
 exports.home = function(request, response) {
 	response.render('home',{
 		title: 'Bienvenido a tu Choza!',
-		navFixed: false,
-		breadcrumbs: breadCrumbs
+		navFixed: false
 	});
 };
 
@@ -20,8 +18,7 @@ exports.home = function(request, response) {
 exports.registro = function(request, response) {
 	response.render('register',{
 		title: 'Crea tu cuenta en TrollMe',
-		navFixed: true,
-		breadcrumbs: breadCrumbs
+		navFixed: true
 	});
 };
 
@@ -48,7 +45,6 @@ exports.trollme = function(request, response) {
 exports.error = function(request, response) {
 	response.render('404',{
 		title: 'Crea tu cuenta en TrollMe',
-		navFixed: true,
-		breadcrumbs: breadCrumbs
+		navFixed: true
 	});
 };
