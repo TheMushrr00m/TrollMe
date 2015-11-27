@@ -13,8 +13,8 @@
 <body>
 
 <script type="text/javascript">
-
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
+
 
 function preload() {
     game.load.image('star', 'oscar-tests/assets/sprites/star.png');
@@ -23,6 +23,7 @@ function preload() {
     game.load.spritesheet('player', 'oscar-tests/assets/sprites/dude.png', 32, 40);
     game.load.image('lives', 'oscar-tests/assets/sprites/firstaid.png');
 }
+
 
 var play = true;
 var stars;
@@ -36,6 +37,7 @@ var lives;
 var stateText;
 var livingEnemies = [];
 var starTimer = 0;
+
 
 function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -56,15 +58,15 @@ function create() {
     enemies.enableBody = true;
     enemies.physicsBodyType = Phaser.Physics.ARCADE;
     
-    //  The score
+    //The score
     scoreString = 'Score : ';
     scoreText = game.add.text(10, 10, scoreString + score, { font: '34px Arial', fill: '#fff' });
 
-    //  Lives
+    //Lives
     lives = game.add.group();
     game.add.text(game.world.width - 100, 10, 'Lives : ', { font: '34px Arial', fill: '#fff' });
 
-    //  Text
+    //Text
     stateText = game.add.text(game.world.centerX,game.world.centerY,' ', { font: '84px Arial', fill: '#fff' });
     stateText.anchor.setTo(0.5, 0.5);
     stateText.visible = false;
@@ -77,39 +79,39 @@ function create() {
         lives_img.alpha = 0.4;
     }
 
-    //  And some controls to play the game with
+    //And some controls to play the game with
     cursors = game.input.keyboard.createCursorKeys();
     fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 }
+
 
 function update() {
     game.physics.arcade.overlap(player, stars, collectStar);
     game.physics.arcade.collide(player, enemies, hazardHitsPlayer);
 
-    //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
-
+    //Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     if (player.alive)
     {
-        //  Reset the player, then check for movement keys
+        //Reset the player, then check for movement keys
         player.body.velocity.x = 0;
 
         if (cursors.left.isDown)
         {
-            //  Move to the left
+            //Move to the left
             player.body.velocity.x = -300;
 
             player.animations.play('left');
         }
         else if (cursors.right.isDown)
         {
-            //  Move to the right
+            //Move to the right
             player.body.velocity.x = 300;
 
             player.animations.play('right');
         }
         else
         {
-            //  Stand still
+            //Stand still
             player.animations.stop();
 
             player.frame = 4;
@@ -122,9 +124,11 @@ function update() {
     }
 }
 
+
 function resetObject (object) {
     object.kill();
 }
+
 
 function createStar(){
     for (var i = 0; i < 8; i++)    
@@ -147,13 +151,15 @@ function createStar(){
     starTimer = game.time.now + 200;
 }
 
+
 function collectStar (player, star) {
     star.kill();
 
-    //  Increase the score
+    //Increase the score
     score += 20;
     scoreText.text = scoreString + score;
 }
+
 
 function hazardHitsPlayer (player, hazard) {
     hazard.kill();
@@ -181,9 +187,9 @@ function hazardHitsPlayer (player, hazard) {
     }
 }
 
+
 function restart () {
-    //  A new level starts
-    
+    //A new level starts    
     //resets the life count
     lives.callAll('revive');
 
@@ -198,7 +204,6 @@ function restart () {
     scoreText.visible = true;
     play = true;
 }
-
 </script>
 
 </body>
