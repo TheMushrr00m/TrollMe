@@ -13,27 +13,26 @@
 <body>
 
 <script type="text/javascript">
-
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
 
-function preload() {
 
+function preload() {
     game.load.spritesheet('player', 'oscar-tests/assets/sprites/dude.png', 32, 40);
     game.load.image('bullet', 'oscar-tests/assets/sprites/diamond.png');
-
 }
+
 
 var player;
 var bullet;
 var bullets;
 var bulletTime = 0;
 
-//  Left, right and space key for controls
+//Left, right and space key for controls
 var leftKey;
 var rightKey;
 var spaceKey;
 
-//  Helpful text display for justPressed functions.
+//Helpful text display for justPressed functions.
 var textLeft;
 var textRight;
 var textSpace;
@@ -41,8 +40,8 @@ var textLeft2;
 var textRight2;
 var textSpace2;
 
-function create() {
 
+function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     game.stage.backgroundColor = '#2d2d2d';
@@ -63,15 +62,15 @@ function create() {
 
     game.physics.enable(player, Phaser.Physics.ARCADE);
 
-	//  Register the keys individually.
+	//Register the keys individually.
 	this.leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
 	this.rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
 	this.spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-    //  Stop the following keys from propagating up to the browser
+    //Stop the following keys from propagating up to the browser
     game.input.keyboard.addKeyCapture([ Phaser.Keyboard.LEFT, Phaser.Keyboard.RIGHT, Phaser.Keyboard.SPACEBAR ]);
 	
-	//  Add some debugging text.
+	//Add some debugging text.
 	this.textLeft = game.add.text(20, 20, "Left was pressed 250 ms ago? NO", { font: "16px Arial", fill: "#ffffff", align: "center" });
 	this.textRight = game.add.text(20, 60, "Right was pressed 500 ms ago? NO", { font: "16px Arial", fill: "#ffffff", align: "center" });
 	this.textSpace = game.add.text(20, 100, "Space was pressed 1000 ms ago? NO", { font: "16px Arial", fill: "#ffffff", align: "center" });
@@ -79,16 +78,14 @@ function create() {
 	this.textLeft2 = game.add.text(600, 20, "Is left still down? NO", { font: "16px Arial", fill: "#ffffff", align: "center" });
 	this.textRight2 = game.add.text(600, 60, "Is right still down? NO", { font: "16px Arial", fill: "#ffffff", align: "center" });
 	this.textSpace2 = game.add.text(600, 100, "Is space still down? NO", { font: "16px Arial", fill: "#ffffff", align: "center" });
-
 }
 
-function update() {
 
+function update() {
     player.body.velocity.x = 0;
     player.body.velocity.y = 0;
 
-
-	//  If true, it means that this key is down. If not, it means that the key is not down (was released/not pressed)
+	//If true, it means that this key is down. If not, it means that the key is not down (was released/not pressed)
     if (this.leftKey.isDown)
     {
         player.body.velocity.x = -200;
@@ -119,12 +116,12 @@ function update() {
 		this.textSpace2.text = "Is space still down? NO";
 	}
 	
-	//  downDuration (previously called 'justPressed') does not schedule key pressing, it's merely indicative 
-    //  of key states. 
-    //  
-    //  In this case the downDuration function tells us that between this current time and 250 milliseconds ago, 
-    //  this key was pressed (not the same as holding down) and if it was pressed between that slice of time, it returns
-	//  true, otherwise false.
+	//downDuration (previously called 'justPressed') does not schedule key pressing, it's merely indicative 
+    //of key states. 
+    //
+    //In this case the downDuration function tells us that between this current time and 250 milliseconds ago, 
+    //this key was pressed (not the same as holding down) and if it was pressed between that slice of time, it returns
+	//true, otherwise false.
 	if (this.leftKey.downDuration(250))
 	{
 		this.textLeft.text = "Left was pressed 250 ms ago? YES";
@@ -151,11 +148,10 @@ function update() {
 	{
 		this.textSpace.text = "Space was pressed 1000 ms ago? NO";
 	}
-
 }
 
+
 function fireBullet () {
-    
     if (game.time.now > bulletTime)
     {
     	/* //Uncomment From here
@@ -165,7 +161,7 @@ function fireBullet () {
 
         //if (bullet)
         //{
-        //    bullet.reset(sprite.x + 6, sprite.y - 8);
+        //  bullet.reset(sprite.x + 6, sprite.y - 8);
         */ //To Here for other method of shooting
 			var bullet = bullets.create(player.x + 6, player.y , 'bullet'); // Comment this for other method of shooting
 
@@ -176,12 +172,11 @@ function fireBullet () {
     }
 }
 
-//  Called if the bullet goes out of the screen
+
+//Called if the bullet goes out of the screen
 function resetBullet (bullet) {
     bullet.kill();
 }
-
 </script>
-
 </body>
 </html>
