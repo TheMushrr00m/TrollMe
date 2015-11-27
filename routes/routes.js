@@ -55,19 +55,15 @@ exports.registro = function(request, response) {
 exports.login = function(request, response) {
 	var data = request.body;
 	console.log('Credenciales: ', data);
-	Users.findOne({
-		NombreUsuario: data.name,
-		Contraseña: data.pass
-	}, function(err, doc) {
-		if(err) { return console.error('Error: ', err); }
-		else {
-			console.log('Doc: ', doc);
-			return response.redirect('/');
-		}
-	});
+	if(DALUsers.checkLogin(data)) {
+		response.send('True');
+	}
+	else {
+		response.send('False');
+	}
 };
 
-/*Maneja el código de la tura /trollme  
+/*Maneja el código de la ruta /trollme  
 TODO: Pasarlo a plantillas de JADE
 */
 exports.trollme = function(request, response) {

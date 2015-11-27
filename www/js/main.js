@@ -29,7 +29,10 @@ $(document).ready(function() {
       type: 'POST',
       data: data,
       success: function(data, textStatus, jqXHR) {
-        return console.log('', data);
+        console.log('', data);
+        if (data === 'True') {
+          return window.location = '/usuario';
+        }
       },
       error: function(jqXHR, textStatus, errorThrown) {
         return console.error('Error', errorThrown);

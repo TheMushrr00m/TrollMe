@@ -24,6 +24,8 @@ $(document).ready ->
       data: data,
       success: (data, textStatus, jqXHR) ->
         console.log '', data
+        if data is 'True'
+          window.location = '/usuario'
       error: (jqXHR, textStatus, errorThrown) ->
         console.error 'Error', errorThrown
       complete: ->
