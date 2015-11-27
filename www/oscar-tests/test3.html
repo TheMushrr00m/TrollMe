@@ -123,34 +123,34 @@ function create() {
     this.text.cameraOffset.setTo(200, 500);
     */
 
-    var house2 = group_all.create(1059 + game.cache.getImage('casa2').width / 2, 322 + game.cache.getImage('casa2').height / 2, 'casa2');
+    var house2 =  buildings.create(1059 + game.cache.getImage('casa2').width / 2, 322 + game.cache.getImage('casa2').height / 2, 'casa2');
     buildingsEnableP2Physics(house2, 86);
 
-    house2 = group_all.create(827 + game.cache.getImage('casa2').width / 2, 438 + game.cache.getImage('casa2').height / 2, 'casa2');
+    house2 =  buildings.create(827 + game.cache.getImage('casa2').width / 2, 438 + game.cache.getImage('casa2').height / 2, 'casa2');
     buildingsEnableP2Physics(house2, 86);
 
-    var house = group_all.create(639 + game.cache.getImage('casa').width / 2, 609 + game.cache.getImage('casa').height / 2, 'casa');
+    var house =  buildings.create(639 + game.cache.getImage('casa').width / 2, 609 + game.cache.getImage('casa').height / 2, 'casa');
     buildingsEnableP2Physics(house, 80);
 
-    var shop = group_all.create(530 + game.cache.getImage('tienda').width / 2, 708 + game.cache.getImage('tienda').height / 2, 'tienda');
+    var shop =  buildings.create(530 + game.cache.getImage('tienda').width / 2, 708 + game.cache.getImage('tienda').height / 2, 'tienda');
     buildingsEnableP2Physics(shop, 71);
 
-    var shop2 = group_all.create(400 + game.cache.getImage('tienda2').width / 2, 826 + game.cache.getImage('tienda2').height / 2, 'tienda2');
+    var shop2 =  buildings.create(400 + game.cache.getImage('tienda2').width / 2, 826 + game.cache.getImage('tienda2').height / 2, 'tienda2');
     buildingsEnableP2Physics(shop2, 43);
 
-    buildingFront = group_all.create(0 + game.cache.getImage('edificioFrente').width / 2, 570 + game.cache.getImage('edificioFrente').height / 2, 'edificioFrente');
+    buildingFront =  buildings.create(0 + game.cache.getImage('edificioFrente').width / 2, 570 + game.cache.getImage('edificioFrente').height / 2, 'edificioFrente');
     buildingsEnableP2Physics(buildingFront, 110);
 
-    var buildingLateral = group_all.create(1399 + game.cache.getImage('edificioLateral').width / 2, 0 + game.cache.getImage('edificioLateral').height / 2, 'edificioLateral');
+    var buildingLateral =  buildings.create(1399 + game.cache.getImage('edificioLateral').width / 2, 0 + game.cache.getImage('edificioLateral').height / 2, 'edificioLateral');
     buildingsEnableP2Physics(buildingLateral, 109);
     
-    buildingLateral = group_all.create(1602 + game.cache.getImage('edificioLateral').width / 2, 117 + game.cache.getImage('edificioLateral').height / 2, 'edificioLateral');
+    buildingLateral =  buildings.create(1602 + game.cache.getImage('edificioLateral').width / 2, 117 + game.cache.getImage('edificioLateral').height / 2, 'edificioLateral');
     buildingsEnableP2Physics(buildingLateral, 109);
     
-    buildingLateral = group_all.create(1805 + game.cache.getImage('edificioLateral').width / 2, 227 + game.cache.getImage('edificioLateral').height / 2, 'edificioLateral');
+    buildingLateral =  buildings.create(1805 + game.cache.getImage('edificioLateral').width / 2, 227 + game.cache.getImage('edificioLateral').height / 2, 'edificioLateral');
     buildingsEnableP2Physics(buildingLateral, 109);
 
-    var mall = group_all.create(2007 + game.cache.getImage('mall').width / 2, 572 + game.cache.getImage('mall').height / 2, 'mall');
+    var mall =  buildings.create(2007 + game.cache.getImage('mall').width / 2, 572 + game.cache.getImage('mall').height / 2, 'mall');
     buildingsEnableP2Physics(mall, 210);
 
     game.camera.follow(player);
@@ -262,13 +262,13 @@ function update() {
             
     }
 
-    //group_all.sort('z_depth', Phaser.Group.SORT_ASCENDING);
-    buildings.sort('z_depth', Phaser.Group.SORT_ASCENDING);
-    aux = buildingFront.z;
-    console.log(aux, player.z);
-    player.z = 10;
-    buildingFront.z = 9;
-    console.log(aux, player.z)
+    group_all.sort('z_depth', Phaser.Group.SORT_ASCENDING);
+    //buildings.sort('z_depth', Phaser.Group.SORT_ASCENDING);
+    //aux = buildingFront.z;
+    //console.log(aux, player.z);
+    //player.z = 10;
+    //buildingFront.z = 9;
+    //console.log(aux, player.z)
 }
 
 
@@ -281,7 +281,7 @@ function buildingsEnableP2Physics(object1, yy)
     object1.body.fixedRotation = true;
     object1.body.clearShapes();
     object1.body.loadPolygon('sprite_physics', object1.key);
-    buildings.add(object1);
+    group_all.add(object1);
 }
 
 
