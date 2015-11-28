@@ -18,6 +18,10 @@ app.set('views', __dirname + '/views');
 
 app.set('view engine', 'jade');
 
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+
 app.use(express["static"](__dirname + '/www'));
 
 app.use(favicon(__dirname + '/www/favicon.ico'));
@@ -32,10 +36,9 @@ app.get('/', routes.index);
 
 app.get('/usuario', routes.home);
 
+app.get('/registro', routes.registroGET);
 
-/*app.get '/registro', routes.registro */
-
-app.get('/login', routes.login);
+app.post('/login', routes.login);
 
 app.get('/trollme', routes.trollme);
 

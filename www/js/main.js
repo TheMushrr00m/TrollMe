@@ -18,9 +18,8 @@ $(document).ready(function() {
   });
   $btnLogin = $('#btnLogin');
   return $btnLogin.click(function(e) {
-    var data, logged;
+    var data;
     e.preventDefault();
-    logged = '';
     data = {
       name: $('#icon_prefix').val(),
       pass: $('#icon-password').val()
@@ -28,21 +27,15 @@ $(document).ready(function() {
     return $.ajax({
       url: '/login',
       type: 'GET',
+      dataType: 'json',
       data: data,
-      success: function(response, textStatus, jqXHR) {
-        console.log('', response);
-        if (response) {
-          return logged = true;
-        }
+      success: function(json, textStatus, jqXHR) {
+        return console.log(json);
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        return console.error('Error', errorThrown);
+        return console.log('Error', errorThrown);
       },
-      complete: function() {
-        if (logged) {
-          return window.location = '/usuario';
-        }
-      }
+      complete: function() {}
     });
   });
 });

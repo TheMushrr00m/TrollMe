@@ -15,20 +15,16 @@ $(document).ready ->
   $btnLogin = $('#btnLogin')
   $btnLogin.click (e) ->
     e.preventDefault()
-    logged = ''
-    data =
+    data ={
       name: $('#icon_prefix').val()
-      pass: $('#icon-password').val(),
+      pass: $('#icon-password').val() }
     $.ajax
       url: '/login'
       type: 'GET'
-      data: data,
-      success: (response, textStatus, jqXHR) ->
-        console.log '', response
-        if response
-          logged = true
+      dataType: 'json'
+      data: data
+      success: (json, textStatus, jqXHR) ->
+        console.log json
       error: (jqXHR, textStatus, errorThrown) ->
-        console.error 'Error', errorThrown
+        console.log 'Error', errorThrown
       complete: ->
-        if logged
-          window.location = '/usuario'
