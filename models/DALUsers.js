@@ -35,8 +35,8 @@ function credentialsAreCorrect(credentials, db, callback) {
 exports.checkLogin = function(credentials){
 	MongoClient.connect(mongodb_connection_string, function(err, db) {
 		assert.equal(null, err);
-	  	credentialsAreCorrect(credentials, db, function() {
-	  		db.close();
-	  	});
+		credentialsAreCorrect(credentials, db, function() {
+			db.close();
+		});
 	});
 };

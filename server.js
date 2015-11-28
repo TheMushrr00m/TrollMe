@@ -20,24 +20,22 @@ app.set('view engine', 'jade');
 
 app.use(express["static"](__dirname + '/www'));
 
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-
-app.use(bodyParser.json());
-
 app.use(favicon(__dirname + '/www/favicon.ico'));
 
 
-/*ROUTES */
+/*===========================================================
+					RUTAS GENERALES						     #
+===========================================================
+ */
 
 app.get('/', routes.index);
 
 app.get('/usuario', routes.home);
 
-app.get('/registro', routes.registro);
 
-app.post('/login', routes.login);
+/*app.get '/registro', routes.registro */
+
+app.get('/login', routes.login);
 
 app.get('/trollme', routes.trollme);
 

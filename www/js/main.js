@@ -18,28 +18,30 @@ $(document).ready(function() {
   });
   $btnLogin = $('#btnLogin');
   return $btnLogin.click(function(e) {
-    var data;
+    var data, logged;
     e.preventDefault();
+    logged = '';
     data = {
       name: $('#icon_prefix').val(),
       pass: $('#icon-password').val()
     };
     return $.ajax({
       url: '/login',
-      type: 'POST',
+      type: 'GET',
       data: data,
-      success: function(data, textStatus, jqXHR) {
-        console.log('', data);
-        if (data === 'True') {
-          return window.location = '/usuario';
+      success: function(response, textStatus, jqXHR) {
+        console.log('', response);
+        if (response) {
+          return logged = true;
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
         return console.error('Error', errorThrown);
       },
       complete: function() {
-
-        /*window.location = '/home' */
+        if (logged) {
+          return window.location = '/usuario';
+        }
       }
     });
   });

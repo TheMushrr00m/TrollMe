@@ -1,19 +1,12 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
-
-exports.Users = new Schema({
-    Nombre: String,
-    Apellido: [{ 
-        Paterno: String,
-        Materno: String
-    }],
-    NombreUsuario: String,
-    CreacionCuenta: { 
-        type: Date,
-        default: Date.now
-    },
-    Email: String,
-    Contraseña: String,
-    Edad: Number,
-    País: String,
+var mongoose = require('mongoose');
+var UsersSchema = mongoose.Schema({
+    Apellido:      { type: String, required: true },
+    Contraseña:    { type: String, required: true },
+    Edad:          { type: Number, required: true },
+    Email:         { type: String, required: true },
+    Nombre:        { type: String, required: true },
+    NombreUsuario: { type: String, required: true },
+    País:          { type: String, required: true }
 });
+
+exports.Users = mongoose.model('Users', UsersSchema);

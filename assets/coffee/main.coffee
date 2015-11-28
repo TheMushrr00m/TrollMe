@@ -11,21 +11,24 @@ $(document).ready ->
     complete: ->
       console.log 'Closed'
   )
+
   $btnLogin = $('#btnLogin')
   $btnLogin.click (e) ->
     e.preventDefault()
+    logged = ''
     data =
       name: $('#icon_prefix').val()
       pass: $('#icon-password').val(),
     $.ajax
       url: '/login'
-      type: 'POST'
+      type: 'GET'
       data: data,
-      success: (data, textStatus, jqXHR) ->
-        console.log '', data
-        if data is 'True'
-          window.location = '/usuario'
+      success: (response, textStatus, jqXHR) ->
+        console.log '', response
+        if response
+          logged = true
       error: (jqXHR, textStatus, errorThrown) ->
         console.error 'Error', errorThrown
       complete: ->
-        ###window.location = '/home'###
+        if logged
+          window.location = '/usuario'
