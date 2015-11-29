@@ -114,7 +114,6 @@ function update() {
     var moving = false;
     var animation = false;
     player.z_depth = player.body.y + player.height;
-	//console.log(player.z_depth, aux);
     if (game.input.mousePointer.isDown || game.input.pointer1.isDown) 	
     {
         //400 is the speed it will move towards the mouse
@@ -209,7 +208,6 @@ function update() {
 }
 function propsEnableP2Physics(object1)
 {
-	console.log(object1.key);
     game.physics.p2.enable(object1, false);
     object1.body.offset.setTo();
     object1.body.static = true;
@@ -226,9 +224,9 @@ function boundariesEnableP2Physics(object1, coords)
 	object1.body.addPolygon( {} ,  coords);
 	object1.body.debug = false;
 }
-function changeLocation()
+function changeLocation(location)
 {
-    locationDiv.innerHTML = 2;
+    locationDiv.innerHTML = location;
 }
 function resize()
 {
@@ -238,7 +236,7 @@ function elevatorRideUp()
 {
 	player.body.x = 851;
     player.body.y = 315;
-    
+    locationDiv.innerHTML = 'trollme';   
 }
 function elevatorRideDown()
 {

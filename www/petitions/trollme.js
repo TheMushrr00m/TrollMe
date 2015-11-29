@@ -14,7 +14,6 @@ var width = window.screen.availWidth * magicWidthNumber;
 var MAP_WIDTH = 2724;
 var MAP_HEIGHT = 1875;
 var MOVING_SPEED = 400;
-//var lGameScale;
 var game = new Phaser.Game(width, height, Phaser.CANVAS, 'trollme', { preload: preload, create: create, update: update}); 
 //800, 600
 function preload() {
@@ -43,13 +42,10 @@ function preload() {
 //Important variables
 var player;
 var cursors;
-//var text;
-
 //Groups
 var buildings;
 var group_all;
 var doors;
-
 //Auxiliar variables
 var aux;
 var buildingFront;
@@ -72,14 +68,6 @@ function create() {
 	player.animations.add('front', [5, 6, 7], 10, true);
 	player.animations.add('back', [8, 9, 10], 10, true);
 	player.animations.add('left', [11, 12, 13, 14], 10, true);
-	/*
-	game.add.text(0, 0, "this text scrolls\nwith the background", { font: "32px Arial", fill: "#f26c4f", align: "center" });
-	this.text = game.add.text(0, 0, "this text is fixed to the camera", { font: "32px Arial", fill: "#ffffff", align: "center" });
-	// Fix the text t to the camera
-	this.text.fixedToCamera = true;
-	// Put an offset to the text
-	this.text.cameraOffset.setTo(200, 500);
-	*/
 	var house2 =  buildings.create(1059 + game.cache.getImage('casa2').width / 2, 322 + game.cache.getImage('casa2').height / 2, 'casa2');
 	buildingsEnableP2Physics(house2, 86);
 	house2 =  buildings.create(827 + game.cache.getImage('casa2').width / 2, 438 + game.cache.getImage('casa2').height / 2, 'casa2');
@@ -202,12 +190,6 @@ function update() {
 		}
 	}
 	group_all.sort('z_depth', Phaser.Group.SORT_ASCENDING);
-	//buildings.sort('z_depth', Phaser.Group.SORT_ASCENDING);
-	//aux = buildingFront.z;
-	//console.log(aux, player.z);
-	//player.z = 10;
-	//buildingFront.z = 9;
-	//console.log(aux, player.z)
 }
 function buildingsEnableP2Physics(object1, yy)
 {
@@ -237,22 +219,3 @@ function boundariesEnableP2Physics(object1, coords)
 	object1.body.addPolygon( {} ,  coords);
 	object1.body.debug = false;
 }
-/*
-$.ajax({
-	url: '/mall',
-	type: 'GET',
-	data: $frmLogin.serialize(),
-	//dataType: 'json',
-	success: function(data, textStatus, jqXHR) {
-		console.log('Success: ', data);
-		$('#response').html(data);
-	},
-	error: function(jqXHR, textStatus, errorThrown) {
-		console.log('Error');
-	},
-	complete: function() {
-		$('#nombre').val('');
-		$('#pass').val('');
-	}
-});
-*/
