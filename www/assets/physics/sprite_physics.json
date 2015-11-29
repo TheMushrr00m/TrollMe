@@ -116,4 +116,55 @@
             "shape": [   71, 169  ,  144.5, 210  ,  72, 251  ,  -0.5, 210  ]
         }
     ]
+    , 
+    "barandalder": [
+        
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   678, 355  ,  612, 393  ,  612, 391  ,  679, 353  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   0, 39  ,  0, 37  ,  612, 391  ,  612, 393  ]
+        }
+    ]
+    , 
+    "barandalizq": [
+        
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   68, 391  ,  68, 393  ,  0, 354  ,  0, 352  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   683, 39  ,  68, 393  ,  68, 391  ,  683, 37  ]
+        }
+    ]
+    , 
+    "elevador1": [
+        
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   35, 215  ,  1, 196  ,  35, 181  ,  69, 197  ]
+        }
+    ]
+    , 
+    "elevador2": [
+        
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   35, 184  ,  69, 198  ,  35, 218  ,  1, 199  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   35, 184  ,  69, 198  ,  35, 218  ,  1, 199  ]
+        }
+    ]
 }
