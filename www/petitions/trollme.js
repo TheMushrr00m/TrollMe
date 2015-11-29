@@ -205,6 +205,7 @@ function buildingsEnableP2Physics(object1, yy)
 function changeLocation(location)
 {
 	locationDiv.innerHTML = location;
+	player.kill();
 }
 function resize()
 {

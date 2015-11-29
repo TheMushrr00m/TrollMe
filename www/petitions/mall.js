@@ -227,6 +227,7 @@ function boundariesEnableP2Physics(object1, coords)
 function changeLocation(location)
 {
     locationDiv.innerHTML = location;
+    player.kill();
 }
 function resize()
 {
@@ -236,7 +237,6 @@ function elevatorRideUp()
 {
 	player.body.x = 851;
     player.body.y = 315;
-    locationDiv.innerHTML = 'trollme';   
 }
 function elevatorRideDown()
 {
