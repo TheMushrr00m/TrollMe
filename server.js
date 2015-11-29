@@ -26,12 +26,6 @@ app.use(express["static"](__dirname + '/www'));
 
 app.use(favicon(__dirname + '/www/favicon.ico'));
 
-
-/*===========================================================
-					RUTAS GENERALES						     #
-===========================================================
- */
-
 app.get('/', routes.index);
 
 app.get('/usuario', routes.home);

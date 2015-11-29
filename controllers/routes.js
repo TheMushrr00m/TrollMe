@@ -23,9 +23,8 @@ exports.index = function(request, response) {
 	});
 };
 
-/*Maneja el código de la ruta '/login' GET */
+/*Maneja el código de la ruta '/login' POST */
 exports.login = function(request, response) {
-	console.log(request.url);
 	console.log(request.body);
 	Users.findOne({
 		NombreUsuario: request.body.name,
@@ -63,7 +62,7 @@ exports.home = function(request, response) {
 	});
 };
 exports.trollme = function(request, response) {
-	response.render('TrollMe',{
+	response.render('trollme',{
 		title: 'Trolling | Now',
 		navFixed: true
 	});
