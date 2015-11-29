@@ -68,6 +68,7 @@ block content
 
 		//Auxiliar variables
 		var aux;
+		var boundaries;
 
 		function create() {
 		    // Set The Bounds of the world where the camera can move to
@@ -80,6 +81,8 @@ block content
 		    doors = game.add.group();
 		    props = game.add.group();
 		    group_all = game.add.group();
+		    boundaries = game.add.group();
+
 
 		    player = group_all.create(game.world.centerX, game.world.centerY, 'espanol'); //dude, espanol, niggah
 		    game.physics.p2.enable(player);
@@ -110,11 +113,50 @@ block content
 
 		    var elevator2 =  group_all.create(836 + game.cache.getImage('elevador2').width / 2, 138 + game.cache.getImage('elevador2').height / 2, 'elevador2');
 		    propsEnableP2Physics(elevator2);
-		    elevator2['z_depth'] = MAP_HEIGHT;
+		    elevator2['z_depth'] = 0;
 		    
 		    game.camera.follow(player);
 
 		    cursors = game.input.keyboard.createCursorKeys();
+		    
+			var boundaries = group_all.create(155, 672); //155, 672
+			boundariesEnableP2Physics(boundaries, [  0, -43  ,  1, -43 ,  1, 0  ,  0, 0  ]);
+
+			boundaries = group_all.create(155, 630); //802, 256
+			boundariesEnableP2Physics(boundaries, [  647, -374  ,  648, -373 ,  0, 0  ,  0, -1  ]);
+
+			boundaries = group_all.create(802, 256); //939, 256
+			boundariesEnableP2Physics(boundaries, [  0, 0  ,  0, -1 ,  137, -1  ,  137, 0  ]);
+
+			boundaries = group_all.create(939, 256); //1586, 630
+			boundariesEnableP2Physics(boundaries, [  0, 0  ,  0, -1 ,  647, 373  ,  647, 374  ]);
+		    
+			boundaries = group_all.create(1580 ,620); //1586, 670
+			boundariesEnableP2Physics(boundaries, [  0, 0  ,  1, 0 ,  1, 60  ,  0, 60  ]);
+
+			boundaries = group_all.create(225, 905); //837, 551
+			boundariesEnableP2Physics(boundaries, [  0, 0  ,  0, -1 ,  612, -355  ,  612, -354  ]);
+
+			boundaries = group_all.create(905, 551); //1518, 906
+			boundariesEnableP2Physics(boundaries, [  0, 0  ,  0, -1 ,  613, 354  ,  613, 355  ]);
+
+			boundaries = group_all.create(1518, 906); //871, 1280
+			boundariesEnableP2Physics(boundaries, [  0, 0  ,  0, 1 ,  -647, 375  ,  -647, 374  ]);
+
+			boundaries = group_all.create(871, 1280); //225, 905
+			boundariesEnableP2Physics(boundaries, [  0, 0  ,  0, 1 ,  -646, -374  ,  -646, -375  ]);
+
+			//Elevators special colisions
+			var elevator_boundaries_top = group_all.create(841, 350); //225, 905
+			boundariesEnableP2Physics(elevator_boundaries_top, [  0, 0  ,  0, 1 ,  27, -14  ,  27, -15  ]);
+			
+			var elevator_boundaries_bottom = group_all.create(874, 569); //901, 554
+			boundariesEnableP2Physics(elevator_boundaries_bottom, [  0, 0  ,  0, 1 ,  27, -14  ,  27, -15  ]);
+		    
+			player.body.createBodyCallback(elevator_boundaries_bottom, elevatorRideUp, this);
+			player.body.createBodyCallback(elevator_boundaries_top, elevatorRideDown, this);
+			game.physics.p2.setImpactEvents(true);
+
 		    resize();
 		}
 
@@ -234,6 +276,17 @@ block content
 		    object1.body.loadPolygon('sprite_physics', object1.key);
 		}
 
+		function boundariesEnableP2Physics(object1, coords)
+		{
+			game.physics.p2.enable(object1, true);
+			object1.body.static = true;
+		    object1.body.fixedRotation = true;
+			object1.body.clearShapes();
+			object1.body.addPolygon( {} ,  coords);
+			//object1.body.debug = false;
+
+		}
+
 
 		function changeLocation()
 		{
@@ -244,4 +297,19 @@ block content
 		function resize()
 		{
 		    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+		}
+
+
+		function elevatorRideUp()
+		{
+			player.body.x = 851;
+		    player.body.y = 315;
+		    
+		}
+
+
+		function elevatorRideDown()
+		{
+			player.body.x = 874;
+		    player.body.y = 573;		    
 		}
