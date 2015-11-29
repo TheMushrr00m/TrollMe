@@ -19,22 +19,25 @@ block content
 						legend Información Básica
 						.input-field.col.s3
 							label(for="name") Nombre:
-							input.validate#name(type="text", placeholder='John', tabindex='1', required)
+							input.validate#name(type="text", name='name', placeholder='John', tabindex='1', required)
 						.input-field.col.s3
 							label(for='lastname') Apellido:
-							input.validate#lastname(type="text", placeholder='Doe',tabindex='2', required)
+							input.validate#lastname(type="text", name='lastname', placeholder='Doe',tabindex='2', required)
 						.input-field.col.s3
 							label(for='username') Nombre de Usuario:
-							input.validate#username(type="text", placeholder='JohnTroll', tabindex='3', required)
+							input.validate#username(type="text", name='username', placeholder='JohnTroll', tabindex='3', required)
 						.input-field.col.s3
 							label(for='pass', data-error='Error', data-success='right') Contraseña:
-							input.validate#pass(type="password", placeholder='Contraseña+SuperSecreta123', tabindex='4', length='10', required)
+							input.validate#pass(type="password", name='pass', placeholder='Contraseña+SuperSecreta123', tabindex='4', length='10', required)
 						.input-field.col.s3
 							label(for='email', data-error='Error', data-success='right') Email:
-							input.validate#email(type="email", placeholder='jhon@doe.com', tabindex='5', required) 
+							input.validate#email(type="email", name='email', placeholder='jhon@doe.com', tabindex='5', required) 
 						.input-field.col.s3
 							label(for='age', data-error='Error', data-success='right') Edad:
-							input.validate#age(type="number", placeholder='Edad', tabindex='5', min='18', max='99', required)
+							input.validate#age(type="number", name='age', placeholder='Edad', tabindex='5', min='18', max='99', required)
+						.input-field.col.s3
+							label(for='country', data-error='Error', data-success='right') País:
+							input.validate#country(type="text", name='age', placeholder='México', tabindex='6', required)
 					fieldset
 						legend Politica de Privacidad
 						.input-field.col.s12
@@ -67,6 +70,9 @@ block content
 						.input-field.col.s4.m2.l1
 							label(for='age', data-error='Error', data-success='right') Edad:
 							input.validate(type="number", placeholder='Edad', tabindex='5', min='18', max='99', required)
+						.input-field.col.s4.m2.l1
+							label(for='country', data-error='Error', data-success='right') País:
+							input.validate(type="text", placeholder='jhon@doe.com', tabindex='5', required) 
 					fieldset
 						legend Politica de Privacidad
 						.input-field.col.s12
@@ -77,13 +83,18 @@ block content
 							input#accept(type="checkbox", checked='checked', disabled='disabled', required)
 							label(for='accept') Aceptar
 block extrajs
-	script(src='js/vendor/jquery.validate.min.js')
 	script(src="js/vendor/step-form-wizard.min.js")
 	script(type='text/javascript').
 		$(document).ready(function() {
 			$("#register").stepFormWizard({
 				theme: 'sky',
-				height: 'auto'
+				height: 'auto',
+				onFinish: function() {
+					//- $.ajax({
+
+					//- })
+					window.location = '/';
+				}
 			});
 			$("#registerMobile").stepFormWizard({
 				theme: 'sky',
