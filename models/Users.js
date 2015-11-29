@@ -6,7 +6,8 @@ var UsersSchema = mongoose.Schema({
     Email:         { type: String, required: true },
     Nombre:        { type: String, required: true },
     NombreUsuario: { type: String, required: true },
-    País:          { type: String, required: true }
+    País:          { type: String, required: true },
+    Foto:          { type: String },
 });
 
 exports.Users = mongoose.model('users', UsersSchema);
