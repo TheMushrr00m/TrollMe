@@ -4,11 +4,11 @@ express = require('express');
 
 app = express();
 
-bodyParser = require('body-parser');
-
 favicon = require('serve-favicon');
 
-routes = require('./routes/routes');
+bodyParser = require('body-parser');
+
+routes = require('./controllers/routes');
 
 port = process.env.OPENSHIFT_NODEJS_PORT || 9000;
 
@@ -19,24 +19,20 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
 app.use(bodyParser.urlencoded({
-  extended: false
+  extended: true
 }));
 
 app.use(express["static"](__dirname + '/www'));
 
 app.use(favicon(__dirname + '/www/favicon.ico'));
 
-
-/*===========================================================
-					RUTAS GENERALES						     #
-===========================================================
- */
-
 app.get('/', routes.index);
 
 app.get('/usuario', routes.home);
 
 app.get('/registro', routes.registroGET);
+
+app.post('/registro', routes.registroPOST);
 
 app.post('/login', routes.login);
 

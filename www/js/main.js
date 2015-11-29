@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var $btnLogin;
+  var $frmLogin;
   $('.button-collapse').sideNav();
 
   /*Inicializa el efecto Parallax */
@@ -9,33 +9,28 @@ $(document).ready(function() {
   $('.modal-trigger').leanModal({
     dismissible: false,
     opacity: .8,
-    ready: function() {
-      return console.log('Ready');
-    },
-    complete: function() {
-      return console.log('Closed');
-    }
+    ready: function() {},
+    complete: function() {}
   });
-  $btnLogin = $('#btnLogin');
-  return $btnLogin.click(function(e) {
-    var data;
+  $frmLogin = $('#frmLogin');
+  return $frmLogin.submit(function(e) {
     e.preventDefault();
-    data = {
-      name: $('#icon_prefix').val(),
-      pass: $('#icon-password').val()
-    };
     return $.ajax({
+      type: 'POST',
       url: '/login',
-      type: 'GET',
+      data: $('#frmLogin').serialize(),
       dataType: 'json',
-      data: data,
-      success: function(json, textStatus, jqXHR) {
-        return console.log(json);
+      error: function(error) {
+        return console.log(error);
       },
-      error: function(jqXHR, textStatus, errorThrown) {
-        return console.log('Error', errorThrown);
-      },
-      complete: function() {}
+      success: function(log) {
+        console.log(log);
+        if (log !== null) {
+          return window.location = '/usuario';
+        } else {
+          return Materialize.toast('Usuario y/o Contraseña incorrectos!', 3000, 'rounded');
+        }
+      }
     });
   });
 });

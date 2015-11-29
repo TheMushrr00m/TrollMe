@@ -15,11 +15,6 @@ mongoose.connect(urlDB, function(err){
 	}
 });
 //=======================================================================================================
-
-//===========================================================
-//					RUTAS GENERALES							#
-//															#
-//===========================================================
 /*Maneja el código de la ruta '/'*/
 exports.index = function(request, response) {
 	response.render('index', { 
@@ -28,19 +23,35 @@ exports.index = function(request, response) {
 	});
 };
 
-/*Maneja el código de la ruta '/login' POST*/
+/*Maneja el código de la ruta '/login' POST */
 exports.login = function(request, response) {
-	Users.find({
-		NombreUsuario: request.params.name,
-		Contraseña: request.params.pass
-	}, function(error, docs) {
+	console.log(request.body);
+	Users.findOne({
+		NombreUsuario: request.body.name,
+		Contraseña: request.body.pass
+	}, function(error, doc) {
 		if(error) {
-			response.send('False');
+			response.json(null);
 		}
 		else {
-			response.redirect('/usuario');
+			console.log(doc);
+			response.json(doc);
 		}
 	});
+};
+
+/*Maneja el código de la ruta '/registro' mediante GET*/
+exports.registroGET = function(request, response) {
+	response.render('register',{
+		title: 'Crea tu cuenta en TrollMe',
+		navFixed: true
+	});
+};
+
+/*Maneja el código de la ruta '/registro' mediante POST */
+exports.registroPOST = function(request, response) {
+	console.log(request.body);
+	response.redirect('/');
 };
 
 /*Maneja el código de la ruta '/usuario'*/
@@ -63,11 +74,3 @@ exports.error = function(request, response) {
 		navFixed: true
 	});
 };
-
-/*Maneja el código de la ruta '/registro'*/
-/*exports.registro = function(request, response) {
-	response.render('register',{
-		title: 'Crea tu cuenta en TrollMe',
-		navFixed: true
-	});
-};*/

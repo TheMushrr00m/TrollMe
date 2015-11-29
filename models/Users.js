@@ -9,4 +9,4 @@ var UsersSchema = mongoose.Schema({
     País:          { type: String, required: true }
 });
 
-exports.Users = mongoose.model('Users', UsersSchema);
+exports.Users = mongoose.model('users', UsersSchema);

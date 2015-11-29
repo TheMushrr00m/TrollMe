@@ -3,28 +3,26 @@ $(document).ready ->
   ###Inicializa el efecto Parallax###
   $('.parallax').parallax()
   ###Inicializa el soporte de los modals###
-  $('.modal-trigger').leanModal(
+  $('.modal-trigger').leanModal
     dismissible: false
     opacity: .8
     ready: ->
-      console.log 'Ready'
     complete: ->
-      console.log 'Closed'
-  )
 
-  $btnLogin = $('#btnLogin')
-  $btnLogin.click (e) ->
+  $frmLogin = $('#frmLogin')
+  $frmLogin.submit (e) ->
     e.preventDefault()
-    data ={
-      name: $('#icon_prefix').val()
-      pass: $('#icon-password').val() }
     $.ajax
+      type: 'POST'
       url: '/login'
-      type: 'GET'
+      data: $('#frmLogin').serialize()
       dataType: 'json'
-      data: data
-      success: (json, textStatus, jqXHR) ->
-        console.log json
-      error: (jqXHR, textStatus, errorThrown) ->
-        console.log 'Error', errorThrown
-      complete: ->
+      error: (error) ->
+        console.log error
+      success: (log) ->
+        console.log log
+        if log isnt null
+          window.location = '/usuario'
+        else
+          Materialize.toast('Usuario y/o Contraseña
+            incorrectos!', 3000, 'rounded')

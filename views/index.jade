@@ -54,49 +54,23 @@ block content
 			.parallax
 				img(src="images/kids-holding-hands.jpg")
 
-					
 	//- LOGIN MODAL
 	.modal#modal-login
 		.modal-content
-			h3.center-align Ingresar!
+			h3.center-align Bienvenido nuevamente!
 			.center-align
 				.divider
 				form#frmLogin.col.s12
 					.row.center-align
 						.input-field.col.m10.offset-m1.blue-text
 							i.mdi-action-account-circle.prefix
-							input#icon_prefix.validate(type='text')
+							input#icon_prefix.validate(type='text', name='name')
 							label(for='icon_prefix') Nombre de Usuario:
 						.input-field.col.m10.offset-m1.blue-text
 							i.mdi-action-lock-open.prefix
-							input#icon-password.validate(type='password')
+							input#icon-password.validate(type='password', name='pass')
 							label(for='icon-password') Contraseña
-						.input-field.col.m10.offset-m1.blue-text
-							input#filled-in-box.blue-text(type='checkbox', checked='checked')
-							label(for='filled-in-box') Recordarme
-				.divider
-				p
-					a.btn.btn-flat.white.modal-action.modal-close(href='#') Cancelar
-					a.waves-effect.waves-blue.blue.btn.btn-flat.modal-action#btnLogin(href='#') Login
-					//- button.waves-indigo.indigo.btn.btn-flat.modal-action.modal-close.white-text(type='submit') Login
-
-	//- Modal Structure
-	#modal-policy.modal.modal-fixed-footer
-		.modal-content
-			h4 Politica de Privacidad
-			p= "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis explicabo quis repellat placeat voluptatibus rem aut, earum nam asperiores, nulla laudantium, ducimus labore deserunt illo quasi veniam dolor aliquid harum!"
-		.modal-footer
-			a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') Cancelar
-			a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#modal-register') Aceptar
-			p ¿Te vas a echar para atrás con el registro?
-	//- Modal Structure
-	#modal-register.modal.modal-fixed-footer
-		.modal-content
-			h4 Registro
-			p= "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis explicabo quis repellat placeat voluptatibus rem aut, earum nam asperiores, nulla laudantium, ducimus labore deserunt illo quasi veniam dolor aliquid harum!"
-		.modal-footer
-			a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') Cancelar
-			a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#') Aceptar
-
+						input.col.s3.offset-s2.right.white-text.waves-effect.waves-blue.blue.btn.btn-flat.modal-action(type="submit", value='Iniciar')
+						input.col.s3.right.black-text.btn.btn-flat.white.modal-action.modal-close#btnLogin(value='Cancelar')
 block footer
 	include ./footer.jade
