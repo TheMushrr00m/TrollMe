@@ -3,16 +3,13 @@ extends ./main.jade
 block title
 	title #{title}
 
-block extracss
-
 block content
-	//- MAIN CONTENT
 	.parallax-container
 		.parallax
 			img(src="images/background1.jpg")
 	.section.white
 		.row.container
-			h2='Bienvenido :Username' 
+			h2 Bienvenido #{userName}
 			.chip
 				img(src='images/themushrr00m.jpeg', alt='username_pic')
-				| Username
+				p #{Username}

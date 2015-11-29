@@ -18,11 +18,9 @@ $(document).ready ->
       data: $('#frmLogin').serialize()
       dataType: 'json'
       error: (error) ->
-        console.log error
       success: (log) ->
-        console.log log
         if log isnt null
-          window.location = '/usuario'
+          window.location = "/#{log.NombreUsuario}"
         else
           Materialize.toast('Usuario y/o Contraseña
             incorrectos!', 3000, 'rounded')

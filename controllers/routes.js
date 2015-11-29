@@ -1,12 +1,10 @@
-//=======================================================================================================
-//										DATABASE
 var mongoose = require('mongoose'),
 	urlDB = 'mongodb://localhost:27017/Trollme',
 	usersModel = require('../models/Users'),
 	Users = usersModel.Users;
 
 // Enable the DB connections
-mongoose.connect(urlDB, function(err){
+mongoose.connect(urlDB, function(err, resp){
 	if(err) {
 		console.log(err);
 	}
@@ -14,7 +12,6 @@ mongoose.connect(urlDB, function(err){
 		console.log('DB Connected!');
 	}
 });
-//=======================================================================================================
 /*Maneja el código de la ruta '/'*/
 exports.index = function(request, response) {
 	response.render('index', { 
@@ -22,7 +19,6 @@ exports.index = function(request, response) {
 		navFixed: true
 	});
 };
-
 /*Maneja el código de la ruta '/login' POST */
 exports.login = function(request, response) {
 	console.log(request.body);
@@ -39,7 +35,6 @@ exports.login = function(request, response) {
 		}
 	});
 };
-
 /*Maneja el código de la ruta '/registro' mediante GET*/
 exports.registroGET = function(request, response) {
 	response.render('register',{
@@ -53,13 +48,13 @@ exports.registroPOST = function(request, response) {
 	console.log(request.body);
 	response.redirect('/');
 };
-
 /*Maneja el código de la ruta '/usuario'*/
 exports.home = function(request, response) {
 	response.render('home',{
 		title: 'Bienvenido a tu Choza!',
-		navFixed: false
-	});
+		navFixed: false,
+		userName: request.params.userName
+	});	
 };
 exports.trollme = function(request, response) {
 	response.render('trollme',{
