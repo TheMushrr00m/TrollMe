@@ -52,9 +52,10 @@ block content
 			game.load.image('mall', 'assets/buildings/mall3.png');
 			game.load.image('barandalizq', 'assets/buildings/barandalizq.png');
 			game.load.image('barandalder', 'assets/buildings/barandalder.png');
-			game.load.image('elevador', 'assets/buildings/elevador.png');
+			game.load.image('elevador1', 'assets/buildings/elevador1.png');
+			game.load.image('elevador2', 'assets/buildings/elevador2.png');
 
-			game.load.physics('sprite_physics', 'oscar-tests/assets/physics/sprite_physics.json');
+			game.load.physics('sprite_physics', 'assets/physics/sprite_physics.json');
 		}
 		//Important variables
 		var player;
@@ -93,25 +94,28 @@ block content
 		    player.animations.add('back', [8, 9, 10], 10, true);
 		    player.animations.add('left', [11, 12, 13, 14], 10, true);
 
-		    var railL =  group_all.create(154 + game.cache.getImage('barandalizq').width / 2, 315 + game.cache.getImage('barandalizq').height / 2, 'barandalizq');
+		    var railL =  props.create(154 + game.cache.getImage('barandalizq').width / 2, 315 + game.cache.getImage('barandalizq').height / 2, 'barandalizq');
 		    propsEnableP2Physics(railL);
-		    props.add(railL);
+		    railL['z_depth'] = MAP_HEIGHT;
+		    group_all.add(railL);
+		    
+			var railR =  props.create(905 + game.cache.getImage('barandalder').width / 2, 316 + game.cache.getImage('barandalder').height / 2, 'barandalder');
+		    propsEnableP2Physics(railR);
+		    railR['z_depth'] = MAP_HEIGHT;
+		    group_all.add(railR);
+		    
+		    var elevator1 =  group_all.create(836 + game.cache.getImage('elevador1').width / 2, 355 + game.cache.getImage('elevador1').height / 2, 'elevador1');
+		    propsEnableP2Physics(elevator1);
+		    elevator1['z_depth'] = 0;
 
-		    /*
-			var railR =  group_all.create(905 + game.cache.getImage('barandalder').width / 2, 316 + game.cache.getImage('barandalder').height / 2, 'barandalder');
-		    //propsEnableP2Physics(railR);
-		    props.add(railR);
-
-		    var elevator =  group_all.create(836 + game.cache.getImage('elevador').width / 2, 138 + game.cache.getImage('elevador').height / 2, 'elevador');
-		    //propsEnableP2Physics(elevator);
-		    elevator['z_depth'] = elevator.body.y + elevator.height / 4;
-			*/
-
+		    var elevator2 =  group_all.create(836 + game.cache.getImage('elevador2').width / 2, 138 + game.cache.getImage('elevador2').height / 2, 'elevador2');
+		    propsEnableP2Physics(elevator2);
+		    elevator2['z_depth'] = MAP_HEIGHT;
+		    
 		    game.camera.follow(player);
 
 		    cursors = game.input.keyboard.createCursorKeys();
 		    resize();
-		    //aux = elevator.z_depth;
 		}
 
 
@@ -219,8 +223,9 @@ block content
 		}
 
 
-		function propsEnableP2Physics(object1, yy)
+		function propsEnableP2Physics(object1)
 		{
+			console.log(object1.key);
 		    game.physics.p2.enable(object1, false);
 		    object1.body.offset.setTo();
 		    object1.body.static = true;

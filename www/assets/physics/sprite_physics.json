@@ -159,12 +159,12 @@
         {
             "density": 2, "friction": 0, "bounce": 0, 
             "filter": { "categoryBits": 1, "maskBits": 65535 },
-            "shape": [   35, 184  ,  69, 198  ,  35, 218  ,  1, 199  ]
+            "shape": [   35, 194  ,  72, 219  ,  35, 228  ,  -3, 219  ]
         } ,
         {
             "density": 2, "friction": 0, "bounce": 0, 
             "filter": { "categoryBits": 1, "maskBits": 65535 },
-            "shape": [   35, 184  ,  69, 198  ,  35, 218  ,  1, 199  ]
+            "shape": [   35, 194  ,  72, 219  ,  35, 228  ,  -3, 219  ]
         }
     ]
 }

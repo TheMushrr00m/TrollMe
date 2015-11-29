@@ -36,7 +36,7 @@ app.get('/', routes.index);
 
 app.get('/usuario', routes.home);
 
-app.get('/registro', routes.registroGET);
+//app.get('/registro', routes.registroGET);
 
 app.post('/login', routes.login);
 
