@@ -19,7 +19,7 @@ block content
 						legend Información Básica
 						.input-field.col.s3
 							label(for="name") Nombre:
-							input.validate#name(type="text", name='name', placeholder='John', tabindex='1', required)
+							input.validate#name(type="text", name='name', placeholder='John', tabindex='1', autofocus, required)
 						.input-field.col.s3
 							label(for='lastname') Apellido:
 							input.validate#lastname(type="text", name='lastname', placeholder='Doe',tabindex='2', required)
@@ -36,8 +36,9 @@ block content
 							label(for='age', data-error='Error', data-success='right') Edad:
 							input.validate#age(type="number", name='age', placeholder='Edad', tabindex='5', min='18', max='99', required)
 						.input-field.col.s3
-							label(for='country', data-error='Error', data-success='right') País:
-							input.validate#country(type="text", name='age', placeholder='México', tabindex='6', required)
+							include ./countrys.jade
+							//- label(for='country', data-error='Error', data-success='right') País:
+							//- input.validate#country(type="text", name='country', placeholder='Mexico', tabindex='6', required)
 					fieldset
 						legend Politica de Privacidad
 						.input-field.col.s12
@@ -54,25 +55,25 @@ block content
 						legend.center Información Básica
 						.input-field.col.s4.m2.l1
 							label(for="name") Nombre:
-							input.validate(type="text", placeholder='John', tabindex='1', required)
+							input.validate(type="text", name='name' placeholder='John', tabindex='1', autofocus required)
 						.input-field.col.s4.m2.l1
 							label(for='lastname') Apellido:
-							input.validate(type="text", placeholder='Doe',tabindex='2', required)
+							input.validate(type="text", name='lastname' placeholder='Doe',tabindex='2', required)
 						.input-field.col.s4.m2.l1
 							label(for='username') Nombre de Usuario:
-							input.validate(type="text", placeholder='JohnTroll', tabindex='3', required)
+							input.validate(type="text", name='username' placeholder='JohnTroll', tabindex='3', required)
 						.input-field.col.s4.m2.l1
 							label(for='pass', data-error='Error', data-success='right') Contraseña:
-							input.validate(type="password", placeholder='Contraseña+SuperSecreta123', tabindex='4', length='10', required)
+							input.validate(type="password", name='pass' placeholder='Contraseña+SuperSecreta123', tabindex='4', length='10', required)
 						.input-field.col.s4.m2.l1
 							label(for='email', data-error='Error', data-success='right') Email:
-							input.validate(type="email", placeholder='jhon@doe.com', tabindex='5', required) 
+							input.validate(type="email", name='email' placeholder='jhon@doe.com', tabindex='5', required) 
 						.input-field.col.s4.m2.l1
 							label(for='age', data-error='Error', data-success='right') Edad:
-							input.validate(type="number", placeholder='Edad', tabindex='5', min='18', max='99', required)
+							input.validate(type="number", name='age' placeholder='Edad', tabindex='5', min='18', max='99', required)
 						.input-field.col.s4.m2.l1
 							label(for='country', data-error='Error', data-success='right') País:
-							input.validate(type="text", placeholder='jhon@doe.com', tabindex='5', required) 
+							input.validate(type="text", name='country' placeholder='Mexico', tabindex='5', required) 
 					fieldset
 						legend Politica de Privacidad
 						.input-field.col.s12
@@ -86,6 +87,7 @@ block extrajs
 	script(src="js/vendor/step-form-wizard.min.js")
 	script(type='text/javascript').
 		$(document).ready(function() {
+			$('select').material_select();
 			$("#register").stepFormWizard({
 				theme: 'sky',
 				height: 'auto',
