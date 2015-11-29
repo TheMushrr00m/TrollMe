@@ -37,8 +37,6 @@ block content
 							input.validate#age(type="number", name='age', placeholder='Edad', tabindex='5', min='18', max='99', required)
 						.input-field.col.s3
 							include ./countrys.jade
-							//- label(for='country', data-error='Error', data-success='right') País:
-							//- input.validate#country(type="text", name='country', placeholder='Mexico', tabindex='6', required)
 					fieldset
 						legend Politica de Privacidad
 						.input-field.col.s12
@@ -72,8 +70,7 @@ block content
 							label(for='age', data-error='Error', data-success='right') Edad:
 							input.validate(type="number", name='age' placeholder='Edad', tabindex='5', min='18', max='99', required)
 						.input-field.col.s4.m2.l1
-							label(for='country', data-error='Error', data-success='right') País:
-							input.validate(type="text", name='country' placeholder='Mexico', tabindex='5', required) 
+							include ./countrys.jade
 					fieldset
 						legend Politica de Privacidad
 						.input-field.col.s12
