@@ -63,7 +63,7 @@ exports.home = function(request, response) {
 	});
 };
 exports.trollme = function(request, response) {
-	response.render('trollme',{
+	response.render('mall',{
 		title: 'Trolling | Now',
 		navFixed: true
 	});
