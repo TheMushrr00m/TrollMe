@@ -1,0 +1,23 @@
+/* TEAM */
+	UI developer: Gabriel Cueto
+	From:Cancun, Quintana Roo. México 
+
+	illustrator: Mauricio Hernandez
+	From:Cancun, Quintana Roo. México 
+
+	illustrator: Reyna Reys
+	From:Cancun, Quintana Roo. México 
+
+	Web designer: Gabriel Cueto
+	From:Cancun, Quintana Roo. México 
+
+	Game designer: Oscar Gomez
+	From:Cancun, Quintana Roo. México 
+	
+	Media Queries by: Gabriel Cueto
+
+/* SITE */
+	Last update:2015/11/30
+	Language: Spanish
+	Doctype:HTML5
+	IDE: Sublime Text
