@@ -1,12 +1,12 @@
-//=======================================================================================================
-//										DATABASE
 var mongoose = require('mongoose'),
-	urlDB = 'mongodb://localhost:27017/Trollme',
+	mongodb_connection_string = 'mongodb://localhost:27017/Trollme',
 	usersModel = require('../models/Users'),
 	Users = usersModel.Users;
-
+if (process.env.OPENSHIFT_MONGODB_DB_URL) {
+    mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + 'Trollme';
+}
 // Enable the DB connections
-mongoose.connect(urlDB, function(err){
+mongoose.connect(mongodb_connection_string, function(err, resp){
 	if(err) {
 		console.log(err);
 	}
@@ -14,7 +14,6 @@ mongoose.connect(urlDB, function(err){
 		console.log('DB Connected!');
 	}
 });
-//=======================================================================================================
 /*Maneja el código de la ruta '/'*/
 exports.index = function(request, response) {
 	response.render('index', { 
@@ -22,7 +21,6 @@ exports.index = function(request, response) {
 		navFixed: true
 	});
 };
-
 /*Maneja el código de la ruta '/login' POST */
 exports.login = function(request, response) {
 	console.log(request.body);
@@ -39,7 +37,6 @@ exports.login = function(request, response) {
 		}
 	});
 };
-
 /*Maneja el código de la ruta '/registro' mediante GET*/
 exports.registroGET = function(request, response) {
 	response.render('register',{
@@ -53,13 +50,14 @@ exports.registroPOST = function(request, response) {
 	console.log(request.body);
 	response.redirect('/');
 };
-
 /*Maneja el código de la ruta '/usuario'*/
 exports.home = function(request, response) {
 	response.render('home',{
 		title: 'Bienvenido a tu Choza!',
-		navFixed: false
-	});
+		navFixed: false,
+		userName: request.params.userName,
+		picture: 'images/profilePictures/themushrr00m.jpeg'
+	});	
 };
 exports.trollme = function(request, response) {
 	response.render('trollme',{

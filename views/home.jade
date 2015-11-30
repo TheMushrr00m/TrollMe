@@ -3,16 +3,13 @@ extends ./main.jade
 block title
 	title #{title}
 
-block extracss
-
 block content
-	//- MAIN CONTENT
-	.parallax-container
-		.parallax
-			img(src="images/background1.jpg")
+	br
 	.section.white
 		.row.container
-			h2='Bienvenido :Username' 
-			.chip
-				img(src='images/themushrr00m.jpeg', alt='username_pic')
-				| Username
+			h2 Bienvenido #{userName}
+			.chip #{userName}
+				img(src='#{picture}', alt='username_pic')
+		.row.container
+			button.btn.white
+				a(href="/trollme") Ir a trollme!

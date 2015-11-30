@@ -20,13 +20,10 @@ $(document).ready(function() {
       url: '/login',
       data: $('#frmLogin').serialize(),
       dataType: 'json',
-      error: function(error) {
-        return console.log(error);
-      },
+      error: function(error) {},
       success: function(log) {
-        console.log(log);
         if (log !== null) {
-          return window.location = '/usuario';
+          return window.location = "/" + log.NombreUsuario + "/profile";
         } else {
           return Materialize.toast('Usuario y/o Contraseña incorrectos!', 3000, 'rounded');
         }

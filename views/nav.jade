@@ -2,7 +2,9 @@ if navFixed
 	.navbar-fixed
 		nav.indigo.darken-1
 			.nav-wrapper.container
-				a.brand-logo(href='/')
+				a.hide-on-med-and-down.brand-logo#logoDesktop(href='/')
+					img(src="images/trollme_logo.png")
+				a.hide-on-large-only.brand-logo(href='/')
 					img(src="images/trollme_logo.png")
 				a.button-collapse(href='#', data-activates='nav-mobile') 
 					i.mdi-navigation-menu
