@@ -1,7 +1,10 @@
 var aux = 'trollme';
 
+
 setInterval(function(){
 	var locationDiv = document.getElementById('location');
+	$('canvas').attr('class', 'game');
+	$('canvas').css({'display' : 'inLine'});
 	if (aux != locationDiv.innerHTML)
 	{
 		aux = locationDiv.innerHTML;

@@ -1,7 +1,34 @@
+if( /Internet Explorer|Firefox/i.test(navigator.userAgent) ) 
+{
+    window.devicePixelRatio = 1;
+}
+var locationDiv = document.getElementById('location')
+var magicWidthNumber = 0.60
+var magicHeightNumber = 0.80
+//Mobile
+//var height = window.innerHeight * magicHeightNumber;
+//var width = window.innerWidth * magicWidthNumber;
+//Computah
+var height = window.screen.availHeight * magicHeightNumber;
+var width = window.screen.availWidth * magicWidthNumber;
+var MAP_WIDTH = 1297;
+var MAP_HEIGHT = 1104;
+var MOVING_SPEED = 400;
+
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
 
 
 function preload() {
+    window.addEventListener('resize', function() {
+        resize();
+    });
+    game.scale.minWidth = width/2;
+    game.scale.minHeight = height/2;
+    game.scale.maxWidth = width;
+    game.scale.maxHeight = height;
+    game.stage.backgroundColor = '#999999';
+
+    game.load.image('exitbutton', 'assets/sprites/button_exit.png');
     game.load.image('star', 'assets/sprites/star.png');
     game.load.spritesheet('hazard', 'assets/sprites/baddie.png', 32, 32);
     game.load.image('sky', 'assets/backgrounds/sky.png');
@@ -9,7 +36,7 @@ function preload() {
     game.load.image('lives', 'assets/sprites/firstaid.png');
 }
 
-
+var button;
 var play = true;
 var stars;
 var enemies;
@@ -28,12 +55,13 @@ function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
 	game.add.sprite(0, 0, 'sky');
-
+    button = game.add.button(0, game.world.height - 44, 'exitbutton', exitOnClick, this, 2, 1, 0);
 	player = game.add.sprite(game.world.centerX, game.world.height -48, 'player');
     game.physics.enable(player, Phaser.Physics.ARCADE);
     player.animations.add('left', [0, 1, 2, 3], 10, true);
     player.animations.add('right', [5, 6, 7, 8], 10, true);
     player.body.collideWorldBounds = true;
+    player.body.static = true;
 
     stars = game.add.group();
     stars.enableBody = true;
@@ -80,19 +108,13 @@ function update() {
         //Reset the player, then check for movement keys
         player.body.velocity.x = 0;
 
-        if (cursors.left.isDown)
+        if (cursors.left.downDuration(1))
         {
-            //Move to the left
-            player.body.velocity.x = -300;
-
-            player.animations.play('left');
+            player.x -= 40;
         }
-        else if (cursors.right.isDown)
+        else if (cursors.right.downDuration(1))
         {
-            //Move to the right
-            player.body.velocity.x = 300;
-
-            player.animations.play('right');
+            player.x += 40;
         }
         else
         {
@@ -188,4 +210,16 @@ function restart () {
     scoreText.text = scoreString + score;
     scoreText.visible = true;
     play = true;
+}
+
+
+function exitOnClick () {
+    player.kill();
+    locationDiv.innerHTML = 'arcade';
+}
+
+
+function resize()
+{
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 }

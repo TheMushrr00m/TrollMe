@@ -1,7 +1,33 @@
+if( /Internet Explorer|Firefox/i.test(navigator.userAgent) ) 
+{
+    window.devicePixelRatio = 1;
+}
+var locationDiv = document.getElementById('location')
+var magicWidthNumber = 0.60
+var magicHeightNumber = 0.80
+//Mobile
+//var height = window.innerHeight * magicHeightNumber;
+//var width = window.innerWidth * magicWidthNumber;
+//Computah
+var height = window.screen.availHeight * magicHeightNumber;
+var width = window.screen.availWidth * magicWidthNumber;
+var MAP_WIDTH = 1297;
+var MAP_HEIGHT = 1104;
+var MOVING_SPEED = 400;
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
 
 
 function preload() {
+    window.addEventListener('resize', function() {
+        resize();
+    });
+    game.scale.minWidth = width/2;
+    game.scale.minHeight = height/2;
+    game.scale.maxWidth = width;
+    game.scale.maxHeight = height;
+    game.stage.backgroundColor = '#999999';
+
+    game.load.image('exitbutton', 'assets/sprites/button_exit.png');
     game.load.image('bullet', 'assets/sprites/star.png');
     game.load.image('enemyBullet', 'assets/sprites/diamond.png');
     game.load.spritesheet('invader', 'assets/sprites/baddie.png', 32, 32);
@@ -10,7 +36,7 @@ function preload() {
     game.load.spritesheet('player', 'assets/sprites/dude.png', 32, 40);
 }
 
-
+var button;
 var player;
 var aliens;
 var bullets;
@@ -31,7 +57,7 @@ function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
 	starfield = game.add.tileSprite(0, 0, 800, 600, 'sky');
-
+    button = game.add.button(0, game.world.height - 44, 'exitbutton', exitOnClick, this, 2, 1, 0);
     bullets = game.add.group();
     bullets.enableBody = true;
     bullets.physicsBodyType = Phaser.Physics.ARCADE;
@@ -232,9 +258,6 @@ function enemyHitsPlayer (player,bullet) {
         stateText.text=" GAME OVER \n Press Enter to \n Restart";
         stateText.visible = true;
 
-        console.log('pero!,FUCK!!!')
-
-
         //the "click to restart" handler
         //game.input.onTap.addOnce(restart,this);
         this.enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER); 
@@ -292,4 +315,16 @@ function restart() {
     stateText.visible = false;
     score = 0;
     scoreText.text = scoreString + score;
+}
+
+
+function exitOnClick () {
+    player.kill();
+    locationDiv.innerHTML = 'arcade';
+}
+
+
+function resize()
+{
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 }

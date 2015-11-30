@@ -14,7 +14,7 @@ var width = window.screen.availWidth * magicWidthNumber;
 var MAP_WIDTH = 1724;
 var MAP_HEIGHT = 1281;
 var MOVING_SPEED = 200;
-var game = new Phaser.Game(width, height, Phaser.CANVAS, 'trollme', { preload: preload, create: create, update: update}); 
+var game = new Phaser.Game(width, height, Phaser.CANVAS, 'mall', { preload: preload, create: create, update: update}); 
 //800, 600
 function preload() {
 	window.addEventListener('resize', function() {
@@ -30,6 +30,7 @@ function preload() {
 	game.load.spritesheet('espanol', 'assets/sprites/espanol.png', 32, 40);
 	game.load.spritesheet('niggah', 'assets/sprites/niggah.png', 32, 40);
 	game.load.image('mall', 'assets/buildings/mall3.png');
+    game.load.image('floormat_exit', 'assets/sprites/floormat_exit.png');
 	game.load.image('barandalizq', 'assets/buildings/barandalizq.png');
 	game.load.image('barandalder', 'assets/buildings/barandalder.png');
 	game.load.image('elevador1', 'assets/buildings/elevador1.png');
@@ -80,6 +81,7 @@ function create() {
     var elevator2 =  group_all.create(836 + game.cache.getImage('elevador2').width / 2, 138 + game.cache.getImage('elevador2').height / 2, 'elevador2');
     propsEnableP2Physics(elevator2);
     elevator2['z_depth'] = MAP_HEIGHT;
+    var exit_floormat =  buildings.create(852 + game.cache.getImage('floormat_exit').width / 2, 1251 + game.cache.getImage('floormat_exit').height / 2, 'floormat_exit');
     game.camera.follow(player);
     cursors = game.input.keyboard.createCursorKeys();
 	var boundaries = group_all.create(155, 672); //155, 672
