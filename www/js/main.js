@@ -23,7 +23,7 @@ $(document).ready(function() {
       error: function(error) {},
       success: function(log) {
         if (log !== null) {
-          return window.location = "/" + log.NombreUsuario;
+          return window.location = "/" + log.NombreUsuario + "/profile";
         } else {
           return Materialize.toast('Usuario y/o Contraseña incorrectos!', 3000, 'rounded');
         }

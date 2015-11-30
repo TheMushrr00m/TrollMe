@@ -1,4 +1,4 @@
-var app, bodyParser, express, favicon, port, routes, server_ip_address;
+var app, bodyParser, express, favicon, path, port, routes, server_ip_address;
 
 express = require('express');
 
@@ -12,19 +12,21 @@ routes = require('./controllers/routes');
 
 port = process.env.OPENSHIFT_NODEJS_PORT || 9000;
 
+path = require('path');
+
 server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-app.use(express["static"](__dirname + '/www'));
+app.use(express["static"](path.join(__dirname, 'www')));
 
 app.use(favicon(__dirname + '/www/favicon.ico'));
 
-app.set('view engine', 'jade');
+app.set('views', path.join(__dirname, 'views'));
 
-app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
 
 app.get('/', routes.index);
 

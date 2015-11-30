@@ -1,10 +1,15 @@
 var mongoose = require('mongoose'),
-	urlDB = 'mongodb://localhost:27017/Trollme',
+	mongodb_connection_string = 'mongodb://localhost:27017/Trollme',
 	usersModel = require('../models/Users'),
 	Users = usersModel.Users;
-
+if (process.env.OPENSHIFT_MONGODB_DB_URL) {
+    mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + 'Trollme';
+}
+if (process.env.OPENSHIFT_MONGO_DB_HOST) {
+    mongodb_connection_string = 'mongodb://' + $OPENSHIFT_MONGODB_HOST + ':' + $OPENSHIFT_MONGO_DB_PORT + '/' + 'Trollme';
+}
 // Enable the DB connections
-mongoose.connect(urlDB, function(err, resp){
+mongoose.connect(mongodb_connection_string, function(err, resp){
 	if(err) {
 		console.log(err);
 	}
@@ -53,7 +58,8 @@ exports.home = function(request, response) {
 	response.render('home',{
 		title: 'Bienvenido a tu Choza!',
 		navFixed: false,
-		userName: request.params.userName
+		userName: request.params.userName,
+		picture: 'images/profilePictures/themushrr00m.jpeg'
 	});	
 };
 exports.trollme = function(request, response) {

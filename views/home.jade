@@ -4,12 +4,12 @@ block title
 	title #{title}
 
 block content
-	.parallax-container
-		.parallax
-			img(src="images/background1.jpg")
+	br
 	.section.white
 		.row.container
 			h2 Bienvenido #{userName}
-			.chip
-				img(src='images/themushrr00m.jpeg', alt='username_pic')
-				p #{Username}
+			.chip #{userName}
+				img(src='#{picture}', alt='username_pic')
+		.row.container
+			button.btn.white
+				a(href="/trollme") Ir a trollme!
