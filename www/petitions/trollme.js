@@ -26,18 +26,21 @@ function preload() {
 	game.scale.maxHeight = height;
 	game.stage.backgroundColor = '#999999';
 	// Load the image and create it into an array of images, 32px width 40 pix height
-	//game.load.spritesheet('dude', 'oscar-tests/assets/sprites/dude2.png', 32, 40);
-	game.load.spritesheet('espanol', 'oscar-tests/assets/sprites/espanol.png', 32, 40);
-	game.load.spritesheet('niggah', 'oscar-tests/assets/sprites/niggah.png', 32, 40);
-	game.load.image('parque', 'oscar-tests/assets/buildings/parque.png');
-	game.load.image('casa', 'oscar-tests/assets/buildings/casa.png');
-	game.load.image('casa2', 'oscar-tests/assets/buildings/casa2.png');
-	game.load.image('mall', 'oscar-tests/assets/buildings/mall.png');
-	game.load.image('tienda', 'oscar-tests/assets/buildings/tienda.png');
-	game.load.image('tienda2', 'oscar-tests/assets/buildings/tienda2.png');
-	game.load.image('edificioFrente', 'oscar-tests/assets/buildings/edificioFrente.png');
-	game.load.image('edificioLateral', 'oscar-tests/assets/buildings/edificioLateral.png');
-	game.load.physics('sprite_physics', 'oscar-tests/assets/physics/sprite_physics.json');
+	//game.load.spritesheet('dude', 'assets/sprites/dude2.png', 32, 40);
+	game.load.spritesheet('espanol', 'assets/sprites/espanol.png', 32, 40);
+	game.load.spritesheet('niggah', 'assets/sprites/niggah.png', 32, 40);
+	game.load.image('parque', 'assets/buildings/parque.png');
+	game.load.image('casa', 'assets/buildings/casa.png');
+	game.load.image('casa2', 'assets/buildings/casa2.png');
+	game.load.image('mall', 'assets/buildings/mall.png');
+	game.load.image('tienda', 'assets/buildings/tienda.png');
+	game.load.image('tienda2', 'assets/buildings/tienda2.png');
+	game.load.image('edificioFrente', 'assets/buildings/edificioFrente.png');
+	game.load.image('edificioLateral', 'assets/buildings/edificioLateral.png');
+	game.load.image('arbol1', 'assets/buildings/arbol1.png');
+	game.load.image('arbol2', 'assets/buildings/arbol2.png');
+	game.load.image('arbol3', 'assets/buildings/arbol3.png');
+	game.load.physics('sprite_physics', 'assets/physics/sprite_physics.json');
 }
 //Important variables
 var player;
@@ -88,12 +91,35 @@ function create() {
 	buildingsEnableP2Physics(buildingLateral, 109);
 	var mall =  buildings.create(2007 + game.cache.getImage('mall').width / 2, 572 + game.cache.getImage('mall').height / 2, 'mall');
 	buildingsEnableP2Physics(mall, 210);
-	game.camera.follow(player);
+	buildingsEnableP2Physics(buildingLateral, 109);
+	var tree1 =  buildings.create(764 + game.cache.getImage('arbol1').width / 2, 1109 + game.cache.getImage('arbol1').height / 2, 'arbol1');
+	buildingsEnableP2Physics(tree1, 0);
+	tree1 = buildings.create(936 + game.cache.getImage('arbol1').width / 2, 1410 + game.cache.getImage('arbol1').height / 2, 'arbol1');
+	buildingsEnableP2Physics(tree1, 0);
+	tree1 = buildings.create(1283 + game.cache.getImage('arbol1').width / 2, 1443 + game.cache.getImage('arbol1').height / 2, 'arbol1');
+	buildingsEnableP2Physics(tree1, 0);
+	tree1 = buildings.create(1515 + game.cache.getImage('arbol1').width / 2, 1277 + game.cache.getImage('arbol1').height / 2, 'arbol1');
+	buildingsEnableP2Physics(tree1, 0);
+	var tree2 =  buildings.create(574 + game.cache.getImage('arbol2').width / 2, 1129 + game.cache.getImage('arbol2').height / 2, 'arbol1');
+	buildingsEnableP2Physics(tree2, 0);
+	tree2 = buildings.create(1055 + game.cache.getImage('arbol2').width / 2, 1336 + game.cache.getImage('arbol2').height / 2, 'arbol1');
+	buildingsEnableP2Physics(tree2, 0);
+	tree2 = buildings.create(1689 + game.cache.getImage('arbol2').width / 2, 1042 + game.cache.getImage('arbol2').height / 2, 'arbol1');
+	buildingsEnableP2Physics(tree2, 0);
+	tree2 =  buildings.create(1281 + game.cache.getImage('arbol2').width / 2, 759 + game.cache.getImage('arbol2').height / 2, 'arbol2');
+	buildingsEnableP2Physics(tree2, 210);
+	var tree3 =  buildings.create(887 + game.cache.getImage('arbol3').width / 2, 1196 + game.cache.getImage('arbol3').height / 2, 'arbol1');
+	buildingsEnableP2Physics(tree3, 0);
+	tree3 = buildings.create(1552 + game.cache.getImage('arbol3').width / 2, 905 + game.cache.getImage('arbol3').height / 2, 'arbol1');
+	buildingsEnableP2Physics(tree3, 0);
+	tree3 = buildings.create(1119 + game.cache.getImage('arbol3').width / 2, 830 + game.cache.getImage('arbol3').height / 2, 'arbol1');
+	buildingsEnableP2Physics(tree3, 0);
 	var mall_door = group_all.create(2129, 999); //2236, 1060
 	boundariesEnableP2Physics(mall_door, [  0, 0  ,  0, 1 ,  107, 62  ,  107, 61  ]);
 	player.body.createBodyCallback(house, function(){changeLocation('house');}, this);
 	player.body.createBodyCallback(mall_door, function(){changeLocation('mall');}, this);
 	game.physics.p2.setImpactEvents(true);
+	game.camera.follow(player);
 	cursors = game.input.keyboard.createCursorKeys();
 	resize();
 }
