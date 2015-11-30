@@ -107,18 +107,17 @@ function create() {
 	buildingsEnableP2Physics(tree2, 0);
 	tree2 = buildings.create(1689 + game.cache.getImage('arbol2').width / 2, 1042 + game.cache.getImage('arbol2').height / 2, 'arbol2');
 	buildingsEnableP2Physics(tree2, 0);
-	tree2 =  buildings.create(1281 + game.cache.getImage('arbol2').width / 2, 739 + game.cache.getImage('arbol2').height / 2, 'arbol2');
-	buildingsEnableP2Physics(tree2, 210);
+	tree2 =  buildings.create(1281 + game.cache.getImage('arbol2').width / 2, 759 + game.cache.getImage('arbol2').height / 2, 'arbol2');
+	buildingsEnableP2Physics(tree2, 0);
 	var tree3 =  buildings.create(887 + game.cache.getImage('arbol3').width / 2, 1196 + game.cache.getImage('arbol3').height / 2, 'arbol3');
 	buildingsEnableP2Physics(tree3, 0);
 	tree3 = buildings.create(1552 + game.cache.getImage('arbol3').width / 2, 905 + game.cache.getImage('arbol3').height / 2, 'arbol3');
 	buildingsEnableP2Physics(tree3, 0);
 	tree3 = buildings.create(1119 + game.cache.getImage('arbol3').width / 2, 830 + game.cache.getImage('arbol3').height / 2, 'arbol3');
 	buildingsEnableP2Physics(tree3, 0);
-	var lake = buildings.create(1023 + game.cache.getImage('lago').width / 2, 1041 + game.cache.getImage('lago').height / 2, 'lago');
-	buildingsEnableP2Physics(lake,0);
+	var lake =  buildings.create(1024 + game.cache.getImage('lago').width / 2, 1042 + game.cache.getImage('lago').height / 2, 'lago');
+	buildingsEnableP2Physics(lake, 0);
 	lake.z_depth = 0;
-	//lake 1023, 1041  1563, 1338
 	var mall_door = group_all.create(2129, 999); //2236, 1060
 	boundariesEnableP2Physics(mall_door, [  0, 0  ,  0, 1 ,  107, 62  ,  107, 61  ]);
 	player.body.createBodyCallback(house, function(){changeLocation('house');}, this);
@@ -251,8 +250,3 @@ function boundariesEnableP2Physics(object1, coords)
 	object1.body.addPolygon( {} ,  coords);
 	object1.body.debug = false;
 }
-
-//arbol1 936, 1410  1078, 1550 = 142x140
-//arbol2 574, 1128  788, 1419 = 214x291
-//arbol3 1119, 830  1287, 1026 = 168x176
-
