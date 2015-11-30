@@ -26,7 +26,7 @@ function preload() {
 	game.scale.maxHeight = height;
 	game.stage.backgroundColor = '#999999';
 	// Load the image and create it into an array of images, 32px width 40 pix height
-	//game.load.spritesheet('dude', 'oscar-tests/assets/sprites/dude2.png', 32, 40);
+	//game.load.spritesheet('dude', 'assets/sprites/dude2.png', 32, 40);
 	game.load.spritesheet('espanol', 'assets/sprites/espanol.png', 32, 40);
 	game.load.spritesheet('niggah', 'assets/sprites/niggah.png', 32, 40);
 	game.load.image('mall', 'assets/buildings/mall3.png');

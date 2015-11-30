@@ -1,4 +1,4 @@
-var aux = 1;
+var aux = 'trollme';
 
 setInterval(function(){
 	var locationDiv = document.getElementById('location');
@@ -12,7 +12,6 @@ setInterval(function(){
 			//dataType: 'json',
 			success: function(data, textStatus, jqXHR) {
 				$('canvas').remove();
-				console.log('Success!');
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 				console.log('Error!');

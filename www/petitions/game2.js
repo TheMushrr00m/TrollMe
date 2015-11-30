@@ -2,11 +2,11 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: p
 
 
 function preload() {
-    game.load.image('star', 'oscar-tests/assets/sprites/star.png');
-    game.load.spritesheet('hazard', 'oscar-tests/assets/sprites/baddie.png', 32, 32);
-    game.load.image('sky', 'oscar-tests/assets/backgrounds/sky.png');
-    game.load.spritesheet('player', 'oscar-tests/assets/sprites/dude.png', 32, 40);
-    game.load.image('lives', 'oscar-tests/assets/sprites/firstaid.png');
+    game.load.image('star', 'assets/sprites/star.png');
+    game.load.spritesheet('hazard', 'assets/sprites/baddie.png', 32, 32);
+    game.load.image('sky', 'assets/backgrounds/sky.png');
+    game.load.spritesheet('player', 'assets/sprites/dude.png', 32, 40);
+    game.load.image('lives', 'assets/sprites/firstaid.png');
 }
 
 
