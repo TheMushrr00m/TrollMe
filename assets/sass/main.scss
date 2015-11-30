@@ -55,3 +55,15 @@ footer.page-footer {
         text-align: center;
     }
 }
+#logoDesktop {
+  transform : rotate(-8deg);
+  -moz-transform : rotate(-8deg); /* Firefox */
+  -webkit-transform : rotate(-8deg); /* Chrome - Safari */
+  -o-transform : rotate(-8deg); /* Opera */
+}
+#logoDesktop:hover {
+  transform : skewY(0deg);
+  -moz-transform : skewY(0deg); /* Firefox */
+  -webkit-transform : skewY(0deg); /* Chrome - Safari */
+  -o-transform : skewY(0deg); /* Opera */
+}
