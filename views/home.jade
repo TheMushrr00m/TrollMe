@@ -11,5 +11,14 @@ block content
 			.chip #{userName}
 				img(src='#{picture}', alt='username_pic')
 		.row.container
-			button.btn.white
-				a(href="/trollme") Ir a trollme!
+			a.btn(href="/trollme") Ir a trollme!
+
+block extrajs
+	script(src='js/vendor/socket.io.js')
+	script(type='text/javascript').
+		$(function($)) {
+			var socket = io.connect();
+			socket.emmit('new user', 1, function(data) {
+				
+			})
+		}

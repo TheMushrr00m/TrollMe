@@ -6,6 +6,7 @@ routes = require './controllers/routes'
 port = process.env.OPENSHIFT_NODEJS_PORT or 9000
 path = require 'path'
 server_ip_address = process.env.OPENSHIFT_NODEJS_IP or '127.0.0.1'
+session = require 'express-session'
 
 app.use bodyParser.urlencoded extended: true
 app.use express.static path.join __dirname, 'www'

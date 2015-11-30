@@ -20,7 +20,6 @@ $(document).ready ->
       error: (error) ->
       success: (log) ->
         if log isnt null
-          window.location = "/#{log.NombreUsuario}/profile"
+          window.location = "/#{log.NombreUsuario}"
         else
-          Materialize.toast('Usuario y/o Contraseña
-            incorrectos!', 3000, 'rounded')
+          Materialize.toast('Datos incorrectos!', 3000, 'rounded')

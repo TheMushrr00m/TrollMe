@@ -1,4 +1,4 @@
-var app, bodyParser, express, favicon, path, port, routes, server_ip_address;
+var app, bodyParser, express, favicon, path, port, routes, server_ip_address, session;
 
 express = require('express');
 
@@ -15,6 +15,8 @@ port = process.env.OPENSHIFT_NODEJS_PORT || 9000;
 path = require('path');
 
 server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+
+session = require('express-session');
 
 app.use(bodyParser.urlencoded({
   extended: true

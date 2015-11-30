@@ -21,6 +21,24 @@ exports.index = function(request, response) {
 		navFixed: true
 	});
 };
+/*Maneja el código de la ruta '/registro' mediante POST */
+exports.registroPOST = function(request, response) {
+	console.log(request.body);
+	var user = new Users({
+		Apellido: request.body.lastname,
+		Contraseña: request.body.pass,
+		Edad: request.body.age,
+		Email: request.body.email,
+		Nombre: request.body.name,
+		NombreUsuario: request.body.username,
+		Pais: request.body.country
+	});
+	user.save(function(err) {
+		if(err) {}
+		console.log('saved');
+		response.redirect('/');
+	});
+};
 /*Maneja el código de la ruta '/login' POST */
 exports.login = function(request, response) {
 	console.log(request.body);
@@ -44,19 +62,13 @@ exports.registroGET = function(request, response) {
 		navFixed: true
 	});
 };
-
-/*Maneja el código de la ruta '/registro' mediante POST */
-exports.registroPOST = function(request, response) {
-	console.log(request.body);
-	response.redirect('/');
-};
 /*Maneja el código de la ruta '/usuario'*/
 exports.home = function(request, response) {
 	response.render('home',{
 		title: 'Bienvenido a tu Choza!',
 		navFixed: false,
 		userName: request.params.userName,
-		picture: 'images/profilePictures/themushrr00m.jpeg'
+		picture: 'images/profilePictures/anon.png'
 	});	
 };
 exports.trollme = function(request, response) {
