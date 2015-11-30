@@ -23,9 +23,9 @@ $(document).ready(function() {
       error: function(error) {},
       success: function(log) {
         if (log !== null) {
-          return window.location = "/" + log.NombreUsuario + "/profile";
+          return window.location = "/" + log.NombreUsuario;
         } else {
-          return Materialize.toast('Usuario y/o Contraseña incorrectos!', 3000, 'rounded');
+          return Materialize.toast('Datos incorrectos!', 3000, 'rounded');
         }
       }
     });

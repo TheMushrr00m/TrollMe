@@ -1,13 +1,13 @@
 var mongoose = require('mongoose');
 var UsersSchema = mongoose.Schema({
-    Apellido:      { type: String, required: true },
-    Contraseña:    { type: String, required: true },
-    Edad:          { type: Number, required: true },
-    Email:         { type: String, required: true },
-    Nombre:        { type: String, required: true },
-    NombreUsuario: { type: String, required: true },
-    País:          { type: String, required: true },
-    Foto:          { type: String },
+    Apellido:      { type: String},
+    Contraseña:    { type: String },
+    Edad:          { type: String },
+    Email:         { type: String },
+    Nombre:        { type: String },
+    NombreUsuario: { type: String },
+    País:          { type: String },
+    Foto:          { type: String, default: 'images/profilePictures/anon.png' },
 });
 
 exports.Users = mongoose.model('users', UsersSchema);
