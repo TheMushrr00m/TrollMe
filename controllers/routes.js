@@ -5,9 +5,6 @@ var mongoose = require('mongoose'),
 if (process.env.OPENSHIFT_MONGODB_DB_URL) {
     mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + 'Trollme';
 }
-if (process.env.OPENSHIFT_MONGO_DB_HOST) {
-    mongodb_connection_string = 'mongodb://' + $OPENSHIFT_MONGODB_HOST + ':' + $OPENSHIFT_MONGO_DB_PORT + '/' + 'Trollme';
-}
 // Enable the DB connections
 mongoose.connect(mongodb_connection_string, function(err, resp){
 	if(err) {
